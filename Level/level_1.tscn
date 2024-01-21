@@ -29,10 +29,7 @@ transform = Transform3D(-0.439939, -0.77297, 0.457133, 0, 0.509041, 0.860742, -0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_xkokw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.989232, -0.043994, 0.139591, -0.0227846, 0.895835, 0.443802, -0.144575, -0.442204, 0.885186, 1.21241, 2.85904, 2.88592)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30844, 4)
 
 [node name="Blocks" type="Node3D" parent="."]
 
