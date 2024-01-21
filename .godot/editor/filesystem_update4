@@ -3,3 +3,5 @@ res://Objects/block.tscn
 res://Objects/player.tscn
 res://Scripts/Icon.gd
 res://Scripts/player.gd
+res://Objects/rupee.tscn
+res://Scripts/rupee.gd

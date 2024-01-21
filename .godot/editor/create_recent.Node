@@ -1,7 +1,8 @@
+MeshInstance3D
 CollisionShape3D
+Area3D
 Sprite3D
 Node3D
-MeshInstance3D
 CharacterBody3D
 RigidBody3D
 DirectionalLight3D
