@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c45dd0jomwrh4"]
+[gd_scene load_steps=7 format=3 uid="uid://c45dd0jomwrh4"]
 
 [ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/block.tscn" id="1_jfyb3"]
 [ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
+[ext_resource type="Texture2D" uid="uid://c22hxy3qtpnow" path="res://icon.svg" id="3_ib41i"]
+[ext_resource type="Script" path="res://Scripts/Icon.gd" id="4_v17ts"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fb6wy"]
 size = Vector3(10, 0.5, 10)
@@ -11,9 +13,6 @@ size = Vector3(10, 0.5, 10)
 
 [node name="Level1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.90735e-06, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5.2084)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -31,6 +30,9 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_xkokw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
 
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.989232, -0.043994, 0.139591, -0.0227846, 0.895835, 0.443802, -0.144575, -0.442204, 0.885186, 1.21241, 2.85904, 2.88592)
+
 [node name="Blocks" type="Node3D" parent="."]
 
 [node name="Block1" parent="Blocks" instance=ExtResource("1_jfyb3")]
@@ -44,3 +46,8 @@ transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, 0.
 
 [node name="Block4" parent="Blocks" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -0.857272, 11.7725, 0)
+
+[node name="Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41631, 0)
+texture = ExtResource("3_ib41i")
+script = ExtResource("4_v17ts")

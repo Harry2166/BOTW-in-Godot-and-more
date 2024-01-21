@@ -1,3 +1,5 @@
 res://Level/level_1.tscn
 res://Objects/block.tscn
 res://Objects/player.tscn
+res://Scripts/Icon.gd
+res://Scripts/player.gd
