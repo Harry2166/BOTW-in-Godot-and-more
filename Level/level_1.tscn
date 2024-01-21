@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c45dd0jomwrh4"]
+[gd_scene load_steps=5 format=3 uid="uid://c45dd0jomwrh4"]
 
 [ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/block.tscn" id="1_jfyb3"]
+[ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fb6wy"]
 size = Vector3(10, 0.5, 10)
@@ -27,14 +28,19 @@ shape = SubResource("BoxShape3D_3wk8y")
 transform = Transform3D(-0.439939, -0.77297, 0.457133, 0, 0.509041, 0.860742, -0.898028, 0.378674, -0.223947, -0.574919, 14.6061, -3.24897)
 shadow_enabled = true
 
-[node name="Block1" parent="." instance=ExtResource("1_jfyb3")]
-transform = Transform3D(0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, 0, 5, 0)
+[node name="Player" parent="." instance=ExtResource("1_xkokw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
 
-[node name="Block2" parent="." instance=ExtResource("1_jfyb3")]
-transform = Transform3D(0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, 0, 6.6012, 0)
+[node name="Blocks" type="Node3D" parent="."]
 
-[node name="Block3" parent="." instance=ExtResource("1_jfyb3")]
+[node name="Block1" parent="Blocks" instance=ExtResource("1_jfyb3")]
+transform = Transform3D(0.353148, -0.935567, 0, 0.935567, 0.353148, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Block2" parent="Blocks" instance=ExtResource("1_jfyb3")]
+transform = Transform3D(0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, -2.18611, 6.6012, 0)
+
+[node name="Block3" parent="Blocks" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, 0.743897, 9.513, 0)
 
-[node name="Block4" parent="." instance=ExtResource("1_jfyb3")]
-transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -0.857272, 9.5023, 0)
+[node name="Block4" parent="Blocks" instance=ExtResource("1_jfyb3")]
+transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -0.857272, 11.7725, 0)
