@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="new-3d-godot-game-WOAH"
+run/main_scene="res://Level/level_1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
