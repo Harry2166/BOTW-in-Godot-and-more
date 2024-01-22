@@ -21,6 +21,7 @@ func get_coin():
 @export var mouse_sensitivity = .1
 @export var controller_sensitivity = 3
 @export var rot_speed = 5
+var num_of_jumps = 2
 #@export (int, 0, 10) var push = 1
 
 #@export var joystickRightPath
@@ -47,6 +48,8 @@ func _ready():
 	pass
 
 func _process(delta):
+	if num_of_jumps < 1 and is_on_floor():
+		num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		if PlayerData.current_ability != PlayerData.Ability.MAGNET:
 			PlayerData.current_ability = PlayerData.Ability.MAGNET
@@ -67,7 +70,6 @@ func _physics_process(delta):
 	jump()
 	apply_controller_rotation()
 	#rotate_player()
-
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg_to_rad(-75), deg_to_rad(75))
 	move_and_slide()
 	#velocity = velocity # move_and_slide_with_snap(linear_velocity = velocity, snap = snap_vector, up_direction = Vector3.UP, stop_on_slope = true, max_slides = 4, floor_max_angle = 0.785398, infinite_inertia = false)
@@ -91,7 +93,6 @@ func get_direction(input_vector):
 	var direction = (input_vector.x * transform.basis.x) + (input_vector.z * transform.basis.z)
 	return direction
 	
-	
 func apply_movement(input_vector, direction, delta):
 	max_speed = default_speed
 	if Input.is_action_pressed("sprint"):
@@ -114,18 +115,20 @@ func apply_gravity(delta):
 	velocity.y += gravity * delta
 	velocity.y = clamp(velocity.y, gravity, jump_impulse)
 	
-	
 func update_snap_vector():
 	snap_vector = -get_floor_normal() if is_on_floor() else Vector3.DOWN
-	
 	
 func jump():
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		snap_vector = Vector3.ZERO
 		velocity.y = jump_impulse
+		num_of_jumps -= 1
+	if Input.is_action_just_pressed("jump") and num_of_jumps > 0 and not is_on_floor():
+		num_of_jumps -= 1
+		snap_vector = Vector3.ZERO
+		velocity.y = jump_impulse
 	if Input.is_action_just_released("jump") and velocity.y > jump_impulse / 2:
 		velocity.y = jump_impulse / 2
-		
 		
 func apply_controller_rotation():
 	var axis_vector = Vector2.ZERO
