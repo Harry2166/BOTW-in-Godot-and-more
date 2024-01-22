@@ -5,11 +5,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_svfv2"]
 size = Vector3(2, 2, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5h6sw"]
-albedo_color = Color(0.968627, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1s8u"]
+albedo_color = Color(1, 0.172549, 0.12549, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4n8tf"]
-material = SubResource("StandardMaterial3D_5h6sw")
+material = SubResource("StandardMaterial3D_t1s8u")
 size = Vector3(2, 2, 2)
 
 [node name="MetallicBlockNegative" type="RigidBody3D"]

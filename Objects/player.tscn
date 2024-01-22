@@ -1,9 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
-[ext_resource type="Material" uid="uid://cdsgcvecbtqol" path="res://player.tres" id="2_3l1cm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfuno"]
+albedo_color = Color(0.254902, 0.47451, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_svdxe"]
+material = SubResource("StandardMaterial3D_mfuno")
 height = 2.35
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3br74"]
@@ -32,7 +35,6 @@ script = ExtResource("1_urbq3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.17438, 0)
-material_override = ExtResource("2_3l1cm")
 mesh = SubResource("CapsuleMesh_svdxe")
 skeleton = NodePath("../..")
 
