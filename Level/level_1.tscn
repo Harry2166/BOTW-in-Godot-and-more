@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c45dd0jomwrh4"]
+[gd_scene load_steps=11 format=3 uid="uid://c45dd0jomwrh4"]
 
 [ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/metallic_block.tscn" id="1_jfyb3"]
 [ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Icon.gd" id="4_v17ts"]
 [ext_resource type="PackedScene" uid="uid://c7po804bwx01b" path="res://Objects/obstacle.tscn" id="6_va835"]
 [ext_resource type="PackedScene" uid="uid://cp2jchjgwpyij" path="res://Objects/metallic_bad_box.tscn" id="7_gajds"]
+[ext_resource type="PackedScene" uid="uid://djwarijri3qf8" path="res://Objects/metallic_block_negative.tscn" id="8_xtmbd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fb6wy"]
 size = Vector3(100, 0.5, 100)
@@ -34,24 +35,24 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.413568, 17.6273)
 gravity = -60
 
-[node name="MetallicBlocks" type="Node3D" parent="."]
+[node name="MetallicBlocksPositive" type="Node3D" parent="."]
 
-[node name="Block1" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
+[node name="Block1" parent="MetallicBlocksPositive" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(0.353148, -0.935567, 0, 0.935567, 0.353148, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="Block2" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
+[node name="Block2" parent="MetallicBlocksPositive" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, -2.18611, 6.6012, 0)
 
-[node name="Block3" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
+[node name="Block3" parent="MetallicBlocksPositive" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, 0.743897, 9.513, 0)
 
-[node name="Block4" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
+[node name="Block4" parent="MetallicBlocksPositive" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -0.857272, 11.7725, 0)
 
-[node name="Block5" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
+[node name="Block5" parent="MetallicBlocksPositive" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -17.5913, 11.7725, 0)
 
-[node name="Block6" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
+[node name="Block6" parent="MetallicBlocksPositive" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -17.5913, 11.7725, 0)
 
 [node name="Rupee" parent="." instance=ExtResource("3_vdn16")]
@@ -82,3 +83,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5846, 5.25077, 13.8359)
 
 [node name="MetallicBlock" parent="test" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.4676, 26.7156)
+
+[node name="MetallicBlocksNegative" type="Node3D" parent="."]
+
+[node name="MetallicBlockNegative" parent="MetallicBlocksNegative" instance=ExtResource("8_xtmbd")]
+transform = Transform3D(1, 0, 0, 0, 0.969919, -0.243429, 0, 0.243429, 0.969919, 27.4715, 13.0118, 22.7415)
+
+[node name="MetallicBlockNegative2" parent="MetallicBlocksNegative" instance=ExtResource("8_xtmbd")]
+transform = Transform3D(1, 0, 0, 0, 0.969919, -0.243429, 0, 0.243429, 0.969919, 27.4715, 13.0118, 31.1667)
+
+[node name="MetallicBlockNegative3" parent="MetallicBlocksNegative" instance=ExtResource("8_xtmbd")]
+transform = Transform3D(1, 0, 0, 0, 0.969919, -0.243429, 0, 0.243429, 0.969919, 27.4715, 22.5155, 31.1667)
+
+[node name="MetallicBlockNegative4" parent="MetallicBlocksNegative" instance=ExtResource("8_xtmbd")]
+transform = Transform3D(1, 0, 0, 0, 0.969919, -0.243429, 0, 0.243429, 0.969919, 27.4715, 6.78946, 33.0756)

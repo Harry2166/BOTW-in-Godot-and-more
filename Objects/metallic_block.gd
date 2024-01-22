@@ -17,15 +17,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if not player.is_magnet:
+	if not player.is_magnet or position.distance_to(player.position) > 7.5:
 		become_magnetic = false
 	
 func _physics_process(delta):
 	if become_magnetic and player.is_magnet:
+		print(player.velocity)
 		if polarity != player.player_polarity:
 			position = position.lerp(player.position, 0.025)
 		else:
-			position = position.lerp(-player.position, 0.025)
+			var going_away = Vector3(player.velocity.x, position.y, player.velocity.z)
+			position = position.lerp(going_away, 0.025)
 		mesh.material_override = magnetizedMaterial
 	elif player.is_magnet:
 		mesh.material_override = potentialMaterial

@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://coqidqpwu33br"]
+[gd_scene load_steps=5 format=3 uid="uid://djwarijri3qf8"]
 
-[ext_resource type="Script" path="res://Objects/metallic_block.gd" id="1_sxvjv"]
+[ext_resource type="Script" path="res://Scripts/metallic_block_negative.gd" id="1_oqx3n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svfv2"]
 size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5h6sw"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0.968627, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4n8tf"]
 material = SubResource("StandardMaterial3D_5h6sw")
 size = Vector3(2, 2, 2)
 
-[node name="MetallicBlockPositive" type="RigidBody3D"]
+[node name="MetallicBlockNegative" type="RigidBody3D"]
 collision_layer = 3
-script = ExtResource("1_sxvjv")
+script = ExtResource("1_oqx3n")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_svfv2")

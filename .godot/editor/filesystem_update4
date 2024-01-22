@@ -5,3 +5,6 @@ res://Objects/rupee.tscn
 res://Objects/metallic_bad_box.tscn
 res://Scripts/player.gd
 res://Objects/metallic_block.gd
+res://Objects/metallic_block_negative.tscn
+res://Scripts/metallic_block_negative.gd
+res://Scripts/metallic_bad_box.gd
