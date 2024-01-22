@@ -12,6 +12,7 @@ size = Vector3(2, 2, 2)
 [node name="WoodBlock" type="RigidBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 5
 mesh = SubResource("BoxMesh_12i55")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

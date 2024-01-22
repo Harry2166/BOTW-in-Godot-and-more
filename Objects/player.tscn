@@ -67,6 +67,10 @@ spring_length = 6.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.34706)
 far = 200.0
 
+[node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.987689, -0.156435, 0, 0.156435, 0.987689, 0, -0.535577, -6.92684)
+target_position = Vector3(0, -1, -100)
+
 [node name="MagneticArea" type="Area3D" parent="."]
 collision_mask = 2
 

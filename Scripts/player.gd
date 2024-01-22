@@ -34,6 +34,7 @@ var snap_vector = Vector3.ZERO
 @onready var camera = $SpringArm3D/Camera3D
 @onready var text = $TextEdit
 @onready var crosshair = $Crosshair
+@onready var aim_ray = $SpringArm3D/Camera3D/RayCast3D
 
 var is_magnet = false
 var use_wood = false
@@ -70,6 +71,9 @@ func _process(delta):
 		
 	if crosshair.visible and not use_wood:
 		crosshair.visible = !crosshair.visible
+	
+	if use_wood and aim_ray.is_colliding():
+		print(aim_ray.get_collider().name)
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
