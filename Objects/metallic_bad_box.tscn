@@ -9,6 +9,7 @@ albedo_color = Color(0, 1, 0, 1)
 material = SubResource("StandardMaterial3D_ch0dl")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ighbj"]
+size = Vector3(0.995972, 0.992455, 1)
 
 [node name="MetallicBadBox" type="RigidBody3D"]
 collision_layer = 3
@@ -19,7 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.817925, 0)
 mesh = SubResource("BoxMesh_w8dqy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.817925, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00140381, 0.819286, 0)
 shape = SubResource("BoxShape3D_ighbj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -35,12 +35,14 @@ var snap_vector = Vector3.ZERO
 @onready var text = $Ability
 @onready var health_text = $Health
 @onready var aim_ray = $SpringArm3D/Camera3D/RayCast3D
+@onready var magnet_collision = $MagneticArea/MagneticCollisionShape
 
 var is_magnet = false
 var use_wood = false
 
 func _ready():
 	health_text.text = "Health: " + str(PlayerData.curr_health)
+	magnet_collision.disabled = true
 
 func _process(delta):
 	if num_of_jumps < 1 and is_on_floor():
@@ -52,11 +54,13 @@ func _process(delta):
 				PlayerData.current_ability = PlayerData.Ability.NONE
 				is_magnet = false
 				use_wood = false
-				text.text = "Current Ability: "
+				magnet_collision.disabled = true
+				text.text = "Current Ability: None"
 			1:
 				PlayerData.current_ability = PlayerData.Ability.MAGNET
 				is_magnet = true
 				use_wood = false
+				magnet_collision.disabled = false
 				text.text = "Current Ability: Magnet"
 	
 func _physics_process(delta):
@@ -148,11 +152,6 @@ func _on_area_3d_body_shape_entered(body_rid, body, body_shape_index, local_shap
 		body.go_to_magnet()
 	elif body.has_method("go_to_magnet") and not is_magnet:
 		body.become_magnetic = false
-		
-	if body.has_method("hurt_player"):
-		body.hurt_player()
-		PlayerData.curr_health -= 1
-		health_text.text = "Health: " + str(PlayerData.curr_health)
 
 func _on_magnetic_area_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 	if body.has_method("go_to_magnet") and not is_magnet:
@@ -161,3 +160,9 @@ func _on_magnetic_area_body_shape_exited(body_rid, body, body_shape_index, local
 func _on_magnetic_area_body_exited(body):
 	if body.has_method("go_to_magnet") and not is_magnet:
 		body.become_magnetic = false
+
+func _on_hit_detection_body_entered(body):
+	if body.has_method("hurt_player"):
+		body.hurt_player()
+		PlayerData.curr_health -= 1
+		health_text.text = "Health: " + str(PlayerData.curr_health)
