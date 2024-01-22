@@ -22,8 +22,7 @@ func get_coin():
 @export var controller_sensitivity = 3
 @export var rot_speed = 5
 var num_of_jumps = 2
-#@export (int, 0, 10) var push = 1
-
+var currAbilityIdx = 0
 #@export var joystickRightPath
 #@onready var joystickRight : VirtualJoystick = get_node(joystickRightPath)
 
@@ -33,8 +32,10 @@ var snap_vector = Vector3.ZERO
 @onready var spring_arm = $SpringArm3D
 @onready var pivot = $Pivot
 @onready var camera = $SpringArm3D/Camera3D
+@onready var text = $TextEdit
 
 var is_magnet = false
+var use_wood = false
 
 func _ready():
 #	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -51,14 +52,23 @@ func _process(delta):
 	if num_of_jumps < 1 and is_on_floor():
 		num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
-		if PlayerData.current_ability != PlayerData.Ability.MAGNET:
-			PlayerData.current_ability = PlayerData.Ability.MAGNET
-			is_magnet = true
-			print("magnet")
-		elif PlayerData.current_ability != PlayerData.Ability.NONE:
-			PlayerData.current_ability = PlayerData.Ability.NONE
-			is_magnet = false
-			print("none")
+		currAbilityIdx += 1
+		match (currAbilityIdx % 3):
+			0:
+				PlayerData.current_ability = PlayerData.Ability.NONE
+				is_magnet = false
+				use_wood = false
+				text.text = "Current Ability: "
+			1:
+				PlayerData.current_ability = PlayerData.Ability.MAGNET
+				is_magnet = true
+				use_wood = false
+				text.text = "Current Ability: Magnet"
+			2:
+				PlayerData.current_ability = PlayerData.Ability.WOOD
+				is_magnet = false
+				use_wood = true
+				text.text = "Current Ability: Wood"
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
@@ -87,7 +97,6 @@ func get_input_vector():
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.z = Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
 	return input_vector.normalized() if input_vector.length() > 1 else input_vector
-	
 	
 func get_direction(input_vector):
 	var direction = (input_vector.x * transform.basis.x) + (input_vector.z * transform.basis.z)
@@ -139,43 +148,12 @@ func apply_controller_rotation():
 		rotate_y(deg_to_rad(-axis_vector.x) * controller_sensitivity)
 		spring_arm.rotate_x(deg_to_rad(-axis_vector.y) * controller_sensitivity)
 		
-		
 func _on_fov_updated(value):
 	camera.fov = value
 	
 	
 func _on_mouse_sens_updated(value):
 	mouse_sensitivity = value
-
-#func _physics_process(delta):
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity.y -= gravity * delta
-#
-	## Handle jump.
-	#if Input.is_action_just_pressed("jump") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-#
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	#if direction:
-		#velocity.x = direction.x * SPEED
-		#velocity.z = direction.z * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-		#velocity.z = move_toward(velocity.z, 0, SPEED)
-	#
-	#if Input.is_action_just_pressed("quit"):
-		#get_tree().quit()
-	#
-	#move_and_slide()
-
-
-func _on_area_3d_body_entered(body):
-	pass
-		
 
 func _on_area_3d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body.has_method("go_to_magnet") and is_magnet:
