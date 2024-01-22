@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=9 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
 [ext_resource type="Material" uid="uid://cdsgcvecbtqol" path="res://player.tres" id="2_3l1cm"]
@@ -21,6 +21,9 @@ is_hemisphere = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jl20e"]
 height = 3.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_30ohv"]
+radius = 3.5
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_urbq3")
@@ -62,3 +65,15 @@ spring_length = 6.0
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.34706)
 far = 200.0
+
+[node name="MagneticArea" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="MagneticCollisionShape" type="CollisionShape3D" parent="MagneticArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73399, 0)
+shape = SubResource("SphereShape3D_30ohv")
+
+[connection signal="body_entered" from="MagneticArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_exited"]
+[connection signal="body_shape_entered" from="MagneticArea" to="." method="_on_area_3d_body_shape_entered"]
+[connection signal="body_shape_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_shape_exited"]

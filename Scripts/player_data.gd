@@ -1,5 +1,5 @@
 extends Node
 
-enum Ability {NONE, MAGNET}
+enum Ability {NONE = 0, MAGNET = 1}
 
 var current_ability = Ability.NONE

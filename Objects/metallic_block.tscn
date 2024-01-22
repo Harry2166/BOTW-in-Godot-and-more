@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://coqidqpwu33br"]
+[gd_scene load_steps=5 format=3 uid="uid://coqidqpwu33br"]
+
+[ext_resource type="Script" path="res://Objects/metallic_block.gd" id="1_sxvjv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svfv2"]
 size = Vector3(2, 2, 2)
@@ -11,9 +13,13 @@ material = SubResource("StandardMaterial3D_5h6sw")
 size = Vector3(2, 2, 2)
 
 [node name="MetallicBlock" type="RigidBody3D"]
+collision_layer = 3
+script = ExtResource("1_sxvjv")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_svfv2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_4n8tf")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

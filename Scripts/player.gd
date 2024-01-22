@@ -33,6 +33,8 @@ var snap_vector = Vector3.ZERO
 @onready var pivot = $Pivot
 @onready var camera = $SpringArm3D/Camera3D
 
+var is_magnet = false
+
 func _ready():
 #	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#Globalsettings.connect("fov_updated", self, "_on_fov_updated")
@@ -41,17 +43,19 @@ func _ready():
 #func _unhandled_input(event):	
 #	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 #		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-#		spring_arm.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))		
+#		spring_arm.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))	
 	pass
 
 func _process(delta):
-	if PlayerData.current_ability != PlayerData.Ability.MAGNET and Input.is_action_just_pressed("right"):
-		PlayerData.current_ability = PlayerData.Ability.MAGNET
-		print("magnet")
-		
-	if PlayerData.current_ability != PlayerData.Ability.NONE and Input.is_action_just_pressed("left"):
-		PlayerData.current_ability = PlayerData.Ability.NONE
-		print("none")
+	if Input.is_action_just_pressed("left_shoulder"):
+		if PlayerData.current_ability != PlayerData.Ability.MAGNET:
+			PlayerData.current_ability = PlayerData.Ability.MAGNET
+			is_magnet = true
+			print("magnet")
+		elif PlayerData.current_ability != PlayerData.Ability.NONE:
+			PlayerData.current_ability = PlayerData.Ability.NONE
+			is_magnet = false
+			print("none")
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
@@ -164,3 +168,24 @@ func _on_mouse_sens_updated(value):
 		#get_tree().quit()
 	#
 	#move_and_slide()
+
+
+func _on_area_3d_body_entered(body):
+	pass
+		
+
+func _on_area_3d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	if body.has_method("go_to_magnet") and is_magnet:
+		body.go_to_magnet()
+	elif body.has_method("go_to_magnet") and not is_magnet:
+		body.become_magnetic = false
+
+
+func _on_magnetic_area_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
+	if body.has_method("go_to_magnet") and not is_magnet:
+		body.become_magnetic = false
+
+
+func _on_magnetic_area_body_exited(body):
+	if body.has_method("go_to_magnet") and not is_magnet:
+		body.become_magnetic = false

@@ -6,3 +6,4 @@ res://Scripts/player.gd
 res://Objects/enemy.tscn
 res://Objects/metallic_block.tscn
 res://Scripts/player_data.gd
+res://Objects/metallic_block.gd
