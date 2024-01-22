@@ -73,7 +73,8 @@ func _process(delta):
 		crosshair.visible = !crosshair.visible
 	
 	if use_wood and aim_ray.is_colliding():
-		print(aim_ray.get_collider().name)
+		if aim_ray.get_collider().has_method("is_wood"):
+			aim_ray.get_collider().is_wood()
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
