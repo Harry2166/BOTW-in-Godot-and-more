@@ -1,6 +1,6 @@
 extends RigidBody3D
-
-@onready var mesh = $MeshInstance3D2
+class_name Metal
+@onready var mesh = $MeshInstance3D
 @onready var player = $"../../Player"
 var direction = Vector3()
 var become_magnetic = false

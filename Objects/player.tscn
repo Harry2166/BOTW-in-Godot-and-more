@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=9 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
 [ext_resource type="Material" uid="uid://cdsgcvecbtqol" path="res://player.tres" id="2_3l1cm"]
-[ext_resource type="Texture2D" uid="uid://c0itji7f1a4ha" path="res://crosshair161.png" id="3_xgk3m"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_svdxe"]
 height = 2.35
@@ -78,24 +77,19 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73399, 0)
 shape = SubResource("SphereShape3D_30ohv")
 
-[node name="TextEdit" type="TextEdit" parent="."]
-offset_right = 231.0
-offset_bottom = 37.0
+[node name="Ability" type="TextEdit" parent="."]
+offset_left = 918.0
+offset_top = 5.0
+offset_right = 1149.0
+offset_bottom = 42.0
 text = "Current Ability:"
 
-[node name="Crosshair" type="TextureRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_xgk3m")
+[node name="Health" type="TextEdit" parent="."]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 235.0
+offset_bottom = 40.0
+text = "Health: 5"
 
 [connection signal="body_entered" from="MagneticArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_exited"]

@@ -32,24 +32,22 @@ var snap_vector = Vector3.ZERO
 @onready var spring_arm = $SpringArm3D
 @onready var pivot = $Pivot
 @onready var camera = $SpringArm3D/Camera3D
-@onready var text = $TextEdit
-@onready var crosshair = $Crosshair
+@onready var text = $Ability
+@onready var health_text = $Health
 @onready var aim_ray = $SpringArm3D/Camera3D/RayCast3D
 
 var is_magnet = false
 var use_wood = false
 
 func _ready():
-	crosshair.position.x = get_viewport().size.x / 2 - 32
-	crosshair.position.y = get_viewport().size.y / 2 - 32
-	crosshair.visible = false
+	health_text.text = "Health: " + str(PlayerData.curr_health)
 
 func _process(delta):
 	if num_of_jumps < 1 and is_on_floor():
 		num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		currAbilityIdx += 1
-		match (currAbilityIdx % 3):
+		match (currAbilityIdx % 2):
 			0:
 				PlayerData.current_ability = PlayerData.Ability.NONE
 				is_magnet = false
@@ -60,21 +58,6 @@ func _process(delta):
 				is_magnet = true
 				use_wood = false
 				text.text = "Current Ability: Magnet"
-			2:
-				PlayerData.current_ability = PlayerData.Ability.WOOD
-				is_magnet = false
-				use_wood = true
-				text.text = "Current Ability: Wood"
-				
-	if Input.is_action_just_pressed("get_crosshair_out") and use_wood:
-		crosshair.visible = !crosshair.visible
-		
-	if crosshair.visible and not use_wood:
-		crosshair.visible = !crosshair.visible
-	
-	if use_wood and aim_ray.is_colliding():
-		if aim_ray.get_collider().has_method("is_wood"):
-			aim_ray.get_collider().is_wood()
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
@@ -157,7 +140,6 @@ func apply_controller_rotation():
 func _on_fov_updated(value):
 	camera.fov = value
 	
-	
 func _on_mouse_sens_updated(value):
 	mouse_sensitivity = value
 
@@ -167,11 +149,9 @@ func _on_area_3d_body_shape_entered(body_rid, body, body_shape_index, local_shap
 	elif body.has_method("go_to_magnet") and not is_magnet:
 		body.become_magnetic = false
 
-
 func _on_magnetic_area_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 	if body.has_method("go_to_magnet") and not is_magnet:
 		body.become_magnetic = false
-
 
 func _on_magnetic_area_body_exited(body):
 	if body.has_method("go_to_magnet") and not is_magnet:

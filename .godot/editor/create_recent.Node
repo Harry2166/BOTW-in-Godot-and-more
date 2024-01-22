@@ -1,8 +1,9 @@
-RayCast3D
 Node3D
 CollisionShape3D
 MeshInstance3D
 RigidBody3D
+StaticBody3D
+RayCast3D
 TextureRect
 TextEdit
 Area3D
@@ -11,4 +12,3 @@ CharacterBody3D
 Camera3D
 SpringArm3D
 Sprite3D
-DirectionalLight3D

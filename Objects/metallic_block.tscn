@@ -19,7 +19,5 @@ script = ExtResource("1_sxvjv")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_svfv2")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_4n8tf")
-
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
