@@ -44,6 +44,15 @@ func _ready():
 #		spring_arm.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))		
 	pass
 
+func _process(delta):
+	if PlayerData.current_ability != PlayerData.Ability.MAGNET and Input.is_action_just_pressed("right"):
+		PlayerData.current_ability = PlayerData.Ability.MAGNET
+		print("magnet")
+		
+	if PlayerData.current_ability != PlayerData.Ability.NONE and Input.is_action_just_pressed("left"):
+		PlayerData.current_ability = PlayerData.Ability.NONE
+		print("none")
+	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
 	var direction = get_direction(input_vector)
@@ -57,7 +66,6 @@ func _physics_process(delta):
 
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg_to_rad(-75), deg_to_rad(75))
 	move_and_slide()
-	print(velocity)
 	#velocity = velocity # move_and_slide_with_snap(linear_velocity = velocity, snap = snap_vector, up_direction = Vector3.UP, stop_on_slope = true, max_slides = 4, floor_max_angle = 0.785398, infinite_inertia = false)
 	for idx in get_slide_collision_count(): # get_slide_count()
 		var collision = get_slide_collision(idx)
