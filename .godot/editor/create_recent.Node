@@ -1,12 +1,12 @@
+CollisionShape3D
+MeshInstance3D
+CharacterBody3D
 Marker3D
 Camera3D
 SpringArm3D
-MeshInstance3D
 Node3D
-CollisionShape3D
 Area3D
 Sprite3D
-CharacterBody3D
 RigidBody3D
 DirectionalLight3D
 StaticBody3D

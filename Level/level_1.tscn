@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c45dd0jomwrh4"]
 
-[ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/block.tscn" id="1_jfyb3"]
+[ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/metallic_block.tscn" id="1_jfyb3"]
 [ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
 [ext_resource type="Texture2D" uid="uid://c22hxy3qtpnow" path="res://icon.svg" id="3_ib41i"]
 [ext_resource type="PackedScene" uid="uid://bi7uoh0gpo8vp" path="res://Objects/rupee.tscn" id="3_vdn16"]
@@ -29,21 +29,25 @@ transform = Transform3D(-0.439939, -0.77297, 0.457133, 0, 0.509041, 0.860742, -0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_xkokw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30844, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.93565, 4)
+gravity = -60
 
-[node name="Blocks" type="Node3D" parent="."]
+[node name="MetallicBlocks" type="Node3D" parent="."]
 
-[node name="Block1" parent="Blocks" instance=ExtResource("1_jfyb3")]
+[node name="Block1" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(0.353148, -0.935567, 0, 0.935567, 0.353148, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="Block2" parent="Blocks" instance=ExtResource("1_jfyb3")]
+[node name="Block2" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, -2.18611, 6.6012, 0)
 
-[node name="Block3" parent="Blocks" instance=ExtResource("1_jfyb3")]
+[node name="Block3" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, 0.743897, 9.513, 0)
 
-[node name="Block4" parent="Blocks" instance=ExtResource("1_jfyb3")]
+[node name="Block4" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
 transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -0.857272, 11.7725, 0)
+
+[node name="Block5" parent="MetallicBlocks" instance=ExtResource("1_jfyb3")]
+transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -17.5913, 11.7725, 0)
 
 [node name="Rupee" parent="." instance=ExtResource("3_vdn16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10937, 0)

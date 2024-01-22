@@ -3,3 +3,5 @@ res://Objects/block.tscn
 res://Objects/player.tscn
 res://Objects/rupee.tscn
 res://Scripts/player.gd
+res://Objects/enemy.tscn
+res://Objects/metallic_block.tscn
