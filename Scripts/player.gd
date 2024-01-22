@@ -148,6 +148,11 @@ func _on_area_3d_body_shape_entered(body_rid, body, body_shape_index, local_shap
 		body.go_to_magnet()
 	elif body.has_method("go_to_magnet") and not is_magnet:
 		body.become_magnetic = false
+		
+	if body.has_method("hurt_player"):
+		body.hurt_player()
+		PlayerData.curr_health -= 1
+		health_text.text = "Health: " + str(PlayerData.curr_health)
 
 func _on_magnetic_area_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 	if body.has_method("go_to_magnet") and not is_magnet:

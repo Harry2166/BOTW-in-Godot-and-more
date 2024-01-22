@@ -22,4 +22,5 @@ mesh = SubResource("BoxMesh_w8dqy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.817925, 0)
 shape = SubResource("BoxShape3D_ighbj")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="child_entered_tree" from="CollisionShape3D" to="." method="_on_collision_shape_3d_child_entered_tree"]

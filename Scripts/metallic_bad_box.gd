@@ -17,7 +17,5 @@ func _physics_process(delta):
 func go_to_magnet():
 	become_magnetic = true
 
-func _on_collision_shape_3d_child_entered_tree(node):
-	if node.has_method("_on_magnetic_area_body_exited"):
-		print("ouch")
-		#PlayerData.curr_health -= 1
+func hurt_player():
+	print("ouch")
