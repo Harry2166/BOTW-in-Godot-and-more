@@ -1,38 +1,64 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=8 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
-[ext_resource type="Material" path="res://player.tres" id="2_3l1cm"]
+[ext_resource type="Material" uid="uid://cdsgcvecbtqol" path="res://player.tres" id="2_3l1cm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_svdxe"]
+height = 3.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3br74"]
-radius = 0.25
-height = 0.5
+radius = 0.15
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f44d6"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_te1xh"]
+material = SubResource("StandardMaterial3D_f44d6")
+radius = 0.05
+height = 0.1
+is_hemisphere = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jl20e"]
+height = 3.0
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_urbq3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.05474, 0)
+[node name="Pivot" type="Marker3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.55382, 0)
 material_override = ExtResource("2_3l1cm")
 mesh = SubResource("CapsuleMesh_svdxe")
+skeleton = NodePath("../..")
 
-[node name="Eye1" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0444574, 0.608588, 0.442982)
+[node name="Eye1" type="MeshInstance3D" parent="Pivot/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.219734, 0.913702, 0.534102)
 mesh = SubResource("CapsuleMesh_3br74")
+metadata/_edit_group_ = true
+
+[node name="eyeball" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Eye1"]
+transform = Transform3D(1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 2.98023e-08, -1, -8.74228e-08, 1, 2.98023e-08, 2.98023e-08, 0, 0.0795025)
+mesh = SubResource("SphereMesh_te1xh")
+
+[node name="Eye2" type="MeshInstance3D" parent="Pivot/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166196, 0.913702, 0.534102)
+mesh = SubResource("CapsuleMesh_3br74")
+metadata/_edit_group_ = true
+
+[node name="eyeball" type="MeshInstance3D" parent="Pivot/MeshInstance3D/Eye2"]
+transform = Transform3D(1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 2.98023e-08, -1, -8.74228e-08, 1, 2.98023e-08, 2.98023e-08, 0, 0.0795025)
+mesh = SubResource("SphereMesh_te1xh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05432, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5534, 0)
 shape = SubResource("CapsuleShape3D_jl20e")
 
-[node name="CameraMount" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58376, -0.0134798)
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.64284, 0)
+spring_length = 6.0
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraMount"]
-spring_length = 1.3
-margin = 0.5
-
-[node name="Camera3D" type="Camera3D" parent="CameraMount"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.30972, 1.2736)
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.34706)
+far = 200.0

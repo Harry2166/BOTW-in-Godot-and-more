@@ -7,10 +7,10 @@
 [ext_resource type="Script" path="res://Scripts/Icon.gd" id="4_v17ts"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fb6wy"]
-size = Vector3(10, 0.5, 10)
+size = Vector3(100, 0.5, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3wk8y"]
-size = Vector3(10, 0.5, 10)
+size = Vector3(100, 0.5, 100)
 
 [node name="Level1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.90735e-06, 0)

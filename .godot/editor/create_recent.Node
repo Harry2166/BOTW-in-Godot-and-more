@@ -1,7 +1,8 @@
+Marker3D
 Camera3D
 SpringArm3D
-Node3D
 MeshInstance3D
+Node3D
 CollisionShape3D
 Area3D
 Sprite3D
