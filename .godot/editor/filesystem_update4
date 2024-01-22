@@ -2,13 +2,6 @@ res://Level/level_1.tscn
 res://Objects/metallic_block.tscn
 res://Objects/player.tscn
 res://Objects/rupee.tscn
-res://Scripts/player.gd
-res://Scripts/player_data.gd
-res://Objects/metallic_block.gd
-res://Objects/wood_block.tscn
-res://Scripts/wood_block.gd
-res://Objects/obstacle.tscn
-res://Objects/spike.tscn
-res://Scripts/spike.gd
 res://Objects/metallic_bad_box.tscn
-res://Scripts/metallic_bad_box.gd
+res://Scripts/player.gd
+res://Objects/metallic_block.gd

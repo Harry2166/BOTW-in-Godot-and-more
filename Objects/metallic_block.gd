@@ -7,6 +7,7 @@ var become_magnetic = false
 var magnetizedMaterial = StandardMaterial3D.new()
 var normalMaterial = StandardMaterial3D.new()
 var potentialMaterial = StandardMaterial3D.new()
+var polarity = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +22,10 @@ func _process(delta):
 	
 func _physics_process(delta):
 	if become_magnetic and player.is_magnet:
-		position = position.lerp(player.position, 0.025)
+		if polarity != player.player_polarity:
+			position = position.lerp(player.position, 0.025)
+		else:
+			position = position.lerp(-player.position, 0.025)
 		mesh.material_override = magnetizedMaterial
 	elif player.is_magnet:
 		mesh.material_override = potentialMaterial

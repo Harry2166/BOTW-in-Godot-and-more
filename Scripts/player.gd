@@ -21,6 +21,7 @@ func get_coin():
 @export var mouse_sensitivity = .1
 @export var controller_sensitivity = 3
 @export var rot_speed = 5
+@export var player_polarity = true
 var num_of_jumps = 2
 var currAbilityIdx = 0
 #@export var joystickRightPath
@@ -36,6 +37,7 @@ var snap_vector = Vector3.ZERO
 @onready var health_text = $Health
 @onready var aim_ray = $SpringArm3D/Camera3D/RayCast3D
 @onready var magnet_collision = $MagneticArea/MagneticCollisionShape
+@onready var polarity_text = $Polarity
 
 var is_magnet = false
 var use_wood = false
@@ -62,6 +64,10 @@ func _process(delta):
 				use_wood = false
 				magnet_collision.disabled = false
 				text.text = "Current Ability: Magnet"
+				
+	if Input.is_action_just_pressed("press"):
+		player_polarity = !player_polarity
+		polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()

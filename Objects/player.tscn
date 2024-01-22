@@ -91,6 +91,13 @@ offset_right = 235.0
 offset_bottom = 40.0
 text = "Health: 5"
 
+[node name="Polarity" type="TextEdit" parent="."]
+offset_left = 1.0
+offset_top = 48.0
+offset_right = 232.0
+offset_bottom = 85.0
+text = "Polarity: Positive"
+
 [node name="HitDetection" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitDetection"]
