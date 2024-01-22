@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c45dd0jomwrh4"]
+[gd_scene load_steps=9 format=3 uid="uid://c45dd0jomwrh4"]
 
 [ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/metallic_block.tscn" id="1_jfyb3"]
 [ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
 [ext_resource type="Texture2D" uid="uid://c22hxy3qtpnow" path="res://icon.svg" id="3_ib41i"]
 [ext_resource type="PackedScene" uid="uid://bi7uoh0gpo8vp" path="res://Objects/rupee.tscn" id="3_vdn16"]
 [ext_resource type="Script" path="res://Scripts/Icon.gd" id="4_v17ts"]
+[ext_resource type="PackedScene" uid="uid://dblqx6war3obl" path="res://Objects/wood_block.tscn" id="6_wx1fl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fb6wy"]
 size = Vector3(100, 0.5, 100)
@@ -58,3 +59,17 @@ visible = false
 pixel_size = 0.003
 texture = ExtResource("3_ib41i")
 script = ExtResource("4_v17ts")
+
+[node name="WoodenBlocks" type="Node3D" parent="."]
+
+[node name="WoodBlock1" parent="WoodenBlocks" instance=ExtResource("6_wx1fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3907, 10.3267, 0)
+
+[node name="WoodBlock2" parent="WoodenBlocks" instance=ExtResource("6_wx1fl")]
+transform = Transform3D(1, 0, 0, 0, 0.880734, 0.473612, 0, -0.473612, 0.880734, 13.2891, 10.3267, 0)
+
+[node name="WoodBlock3" parent="WoodenBlocks" instance=ExtResource("6_wx1fl")]
+transform = Transform3D(1, 0, 0, 0, 0.57666, -0.816984, 0, 0.816984, 0.57666, 10.3907, 10.3267, 4.08005)
+
+[node name="WoodBlock4" parent="WoodenBlocks" instance=ExtResource("6_wx1fl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2739, 10.3267, 0)

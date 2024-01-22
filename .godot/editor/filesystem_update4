@@ -4,3 +4,5 @@ res://Objects/player.tscn
 res://Objects/rupee.tscn
 res://Scripts/player.gd
 res://Scripts/player_data.gd
+res://Objects/metallic_block.gd
+res://Objects/wood_block.tscn

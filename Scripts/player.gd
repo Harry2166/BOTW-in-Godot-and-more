@@ -33,20 +33,15 @@ var snap_vector = Vector3.ZERO
 @onready var pivot = $Pivot
 @onready var camera = $SpringArm3D/Camera3D
 @onready var text = $TextEdit
+@onready var crosshair = $Crosshair
 
 var is_magnet = false
 var use_wood = false
 
 func _ready():
-#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#Globalsettings.connect("fov_updated", self, "_on_fov_updated")
-	#Globalsettings.connect("mouse_sens_updated", self, "_on_mouse_sens_updated")
-	
-#func _unhandled_input(event):	
-#	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-#		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-#		spring_arm.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))	
-	pass
+	crosshair.position.x = get_viewport().size.x / 2 - 32
+	crosshair.position.y = get_viewport().size.y / 2 - 32
+	crosshair.visible = false
 
 func _process(delta):
 	if num_of_jumps < 1 and is_on_floor():
@@ -69,6 +64,12 @@ func _process(delta):
 				is_magnet = false
 				use_wood = true
 				text.text = "Current Ability: Wood"
+				
+	if Input.is_action_just_pressed("get_crosshair_out") and use_wood:
+		crosshair.visible = !crosshair.visible
+		
+	if crosshair.visible and not use_wood:
+		crosshair.visible = !crosshair.visible
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()

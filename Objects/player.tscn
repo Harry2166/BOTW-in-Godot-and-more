@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=10 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
 [ext_resource type="Material" uid="uid://cdsgcvecbtqol" path="res://player.tres" id="2_3l1cm"]
+[ext_resource type="Texture2D" uid="uid://c0itji7f1a4ha" path="res://crosshair161.png" id="3_xgk3m"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_svdxe"]
-height = 3.0
+height = 2.35
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3br74"]
 radius = 0.15
@@ -20,7 +21,7 @@ height = 0.1
 is_hemisphere = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jl20e"]
-height = 3.0
+height = 2.35
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_30ohv"]
 radius = 3.5
@@ -31,7 +32,7 @@ script = ExtResource("1_urbq3")
 [node name="Pivot" type="Marker3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.55382, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.17438, 0)
 material_override = ExtResource("2_3l1cm")
 mesh = SubResource("CapsuleMesh_svdxe")
 skeleton = NodePath("../..")
@@ -55,7 +56,7 @@ transform = Transform3D(1, 8.74228e-08, -8.74228e-08, -8.74228e-08, 2.98023e-08,
 mesh = SubResource("SphereMesh_te1xh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5534, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17396, 0)
 shape = SubResource("CapsuleShape3D_jl20e")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
@@ -77,6 +78,20 @@ shape = SubResource("SphereShape3D_30ohv")
 offset_right = 231.0
 offset_bottom = 37.0
 text = "Current Ability:"
+
+[node name="Crosshair" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xgk3m")
 
 [connection signal="body_entered" from="MagneticArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_exited"]
