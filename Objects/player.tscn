@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=10 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
+[ext_resource type="Texture2D" uid="uid://laln5uwo2dok" path="res://Objects/crosshair161.png" id="2_mm8v2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfuno"]
 albedo_color = Color(0.254902, 0.47451, 1, 1)
@@ -69,8 +70,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.34706)
 far = 200.0
 
 [node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 0.987689, -0.156435, 0, 0.156435, 0.987689, 0, -0.535577, -6.92684)
-target_position = Vector3(0, -1, -100)
+transform = Transform3D(1, 0, 0, 0, 0.987689, -0.156435, 0, 0.156435, 0.987689, 0, 0.424681, -6.66954)
+target_position = Vector3(0, -1, -20)
+collision_mask = 4
 
 [node name="MagneticArea" type="Area3D" parent="."]
 collision_mask = 2
@@ -105,6 +107,13 @@ text = "Polarity: Positive"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitDetection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17396, 0)
 shape = SubResource("CapsuleShape3D_jl20e")
+
+[node name="Crosshair" type="TextureRect" parent="."]
+offset_left = 578.0
+offset_top = 329.0
+offset_right = 642.0
+offset_bottom = 393.0
+texture = ExtResource("2_mm8v2")
 
 [connection signal="body_entered" from="MagneticArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_exited"]

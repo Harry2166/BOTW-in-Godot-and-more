@@ -1,3 +1,4 @@
+TextureRect
 Node3D
 Area3D
 CollisionShape3D
@@ -5,7 +6,6 @@ MeshInstance3D
 RigidBody3D
 StaticBody3D
 RayCast3D
-TextureRect
 TextEdit
 Marker3D
 CharacterBody3D

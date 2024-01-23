@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c45dd0jomwrh4"]
+[gd_scene load_steps=12 format=3 uid="uid://c45dd0jomwrh4"]
 
 [ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/metallic_block.tscn" id="1_jfyb3"]
 [ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c7po804bwx01b" path="res://Objects/obstacle.tscn" id="6_va835"]
 [ext_resource type="PackedScene" uid="uid://cp2jchjgwpyij" path="res://Objects/metallic_bad_box.tscn" id="7_gajds"]
 [ext_resource type="PackedScene" uid="uid://djwarijri3qf8" path="res://Objects/metallic_block_negative.tscn" id="8_xtmbd"]
+[ext_resource type="PackedScene" uid="uid://dblqx6war3obl" path="res://Objects/wood_block.tscn" id="9_81uec"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fb6wy"]
 size = Vector3(100, 0.5, 100)
@@ -97,3 +98,17 @@ transform = Transform3D(1, 0, 0, 0, 0.969919, -0.243429, 0, 0.243429, 0.969919, 
 
 [node name="MetallicBlockNegative4" parent="MetallicBlocksNegative" instance=ExtResource("8_xtmbd")]
 transform = Transform3D(1, 0, 0, 0, 0.969919, -0.243429, 0, 0.243429, 0.969919, 27.4715, 6.78946, 33.0756)
+
+[node name="Wood" type="Node3D" parent="."]
+
+[node name="WoodBlock" parent="Wood" instance=ExtResource("9_81uec")]
+transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -27.5069, 12.0416, 0)
+
+[node name="WoodBlock2" parent="Wood" instance=ExtResource("9_81uec")]
+transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -27.5069, 12.0416, 9.18838)
+
+[node name="WoodBlock3" parent="Wood" instance=ExtResource("9_81uec")]
+transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -13.6149, 12.0416, 9.18838)
+
+[node name="WoodBlock4" parent="Wood" instance=ExtResource("9_81uec")]
+transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -19.5028, 22.1086, 9.18838)

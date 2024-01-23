@@ -33,11 +33,12 @@ var snap_vector = Vector3.ZERO
 @onready var spring_arm = $SpringArm3D
 @onready var pivot = $Pivot
 @onready var camera = $SpringArm3D/Camera3D
-@onready var text = $Ability
+@onready var ability_text = $Ability
 @onready var health_text = $Health
 @onready var aim_ray = $SpringArm3D/Camera3D/RayCast3D
 @onready var magnet_collision = $MagneticArea/MagneticCollisionShape
 @onready var polarity_text = $Polarity
+@onready var crosshair = $Crosshair
 
 var is_magnet = false
 var use_wood = false
@@ -45,27 +46,39 @@ var use_wood = false
 func _ready():
 	health_text.text = "Health: " + str(PlayerData.curr_health)
 	magnet_collision.disabled = true
+	crosshair.position.x = get_viewport().size.x / 2 - 32
+	crosshair.position.y = get_viewport().size.y / 2 - 64
+	crosshair.visible = false
 
 func _process(delta):
 	if num_of_jumps < 1 and is_on_floor():
 		num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		currAbilityIdx += 1
-		match (currAbilityIdx % 2):
+		match (currAbilityIdx % 3):
 			0:
 				PlayerData.current_ability = PlayerData.Ability.NONE
 				is_magnet = false
 				use_wood = false
 				magnet_collision.disabled = true
-				text.text = "Current Ability: None"
+				crosshair.visible = false
+				ability_text.text = "Current Ability: None"
 			1:
 				PlayerData.current_ability = PlayerData.Ability.MAGNET
 				is_magnet = true
 				use_wood = false
+				crosshair.visible = false
 				magnet_collision.disabled = false
-				text.text = "Current Ability: Magnet"
+				ability_text.text = "Current Ability: Magnet"
+			2:
+				PlayerData.current_ability = PlayerData.Ability.WOOD
+				is_magnet = false
+				use_wood = true
+				magnet_collision.disabled = true
+				crosshair.visible = true
+				ability_text.text = "Current Ability: Wood"
 				
-	if Input.is_action_just_pressed("press"):
+	if Input.is_action_just_pressed("press") and is_magnet:
 		player_polarity = !player_polarity
 		polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
 	
@@ -86,6 +99,9 @@ func _physics_process(delta):
 		var collision = get_slide_collision(idx)
 		#if collision.collider.is_in_group("bodies"):
 			#collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push)
+	
+	if aim_ray.is_colliding():
+		print(aim_ray.get_collider().name)
 	
 #func rotate_player():
 	#rotate_y(deg_to_rad(joystickRight.get_output().x * mouse_sensitivity))
