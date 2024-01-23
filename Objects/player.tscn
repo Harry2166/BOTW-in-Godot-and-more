@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=11 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
 [ext_resource type="Texture2D" uid="uid://laln5uwo2dok" path="res://Objects/crosshair161.png" id="2_mm8v2"]
+[ext_resource type="Texture2D" uid="uid://ec2atpjwm3e3" path="res://crosshair162.png" id="3_5lmoo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfuno"]
 albedo_color = Color(0.254902, 0.47451, 1, 1)
@@ -119,6 +120,13 @@ offset_top = 329.0
 offset_right = 642.0
 offset_bottom = 393.0
 texture = ExtResource("2_mm8v2")
+
+[node name="CrosshairExtra" type="TextureRect" parent="."]
+offset_left = 579.0
+offset_top = 331.0
+offset_right = 643.0
+offset_bottom = 395.0
+texture = ExtResource("3_5lmoo")
 
 [connection signal="body_entered" from="MagneticArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_exited"]

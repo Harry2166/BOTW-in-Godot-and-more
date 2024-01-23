@@ -1,10 +1,5 @@
 res://Level/level_1.tscn
-res://Objects/obstacle.tscn
-res://Objects/metallic_block.gd
-res://Scripts/player.gd
 res://Objects/wood_block.tscn
 res://Objects/player.tscn
-res://Scripts/player_data.gd
 res://Objects/metallic_bad_box.tscn
-res://Scripts/wood_block.gd
-res://Scripts/metallic_bad_box.gd
+res://Scripts/player.gd

@@ -39,6 +39,7 @@ var snap_vector = Vector3.ZERO
 @onready var magnet_collision = $MagneticArea/MagneticCollisionShape
 @onready var polarity_text = $Polarity
 @onready var crosshair = $Crosshair
+@onready var extra_crosshair = $CrosshairExtra
 @onready var wood_location = $SpringArm3D/Camera3D/WhereWoodGoes
 
 var is_magnet = false
@@ -51,8 +52,21 @@ func _ready():
 	crosshair.position.x = get_viewport().size.x / 2 - 32
 	crosshair.position.y = get_viewport().size.y / 2 - 64
 	crosshair.visible = false
+	extra_crosshair.position.x = get_viewport().size.x / 2 - 32
+	extra_crosshair.position.y = get_viewport().size.y / 2 - 64
+	extra_crosshair.visible = false
 
 func _process(delta):
+	
+	if crosshair.position.x != (get_viewport().size.x / 2 - 32):
+		print(get_viewport().size.y)
+		ability_text.position.x = get_viewport().size.x - 256
+		ability_text.position.y = get_viewport().size.y - 995
+		crosshair.position.x = get_viewport().size.x / 2 - 32
+		crosshair.position.y = get_viewport().size.y / 2 - 64
+		extra_crosshair.position.x = get_viewport().size.x / 2 - 32
+		extra_crosshair.position.y = get_viewport().size.y / 2 - 64
+
 	if num_of_jumps < 1 and is_on_floor():
 		num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
@@ -102,10 +116,13 @@ func _physics_process(delta):
 		#if collision.collider.is_in_group("bodies"):
 			#collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push)
 	
-	if aim_ray.is_colliding():
+	if aim_ray.is_colliding() and use_wood:
 		collision_point = aim_ray.get_collision_point()
-		if aim_ray.get_collider().has_method("get_used") and use_wood:
+		extra_crosshair.visible = true
+		if aim_ray.get_collider().has_method("get_used"):
 			aim_ray.get_collider().get_used()
+	else:
+		extra_crosshair.visible = false
 		#print(aim_ray.get_collider().name)
 	
 #func rotate_player():
