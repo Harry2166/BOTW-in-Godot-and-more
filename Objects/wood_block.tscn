@@ -25,5 +25,11 @@ mesh = SubResource("BoxMesh_12i55")
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("BoxShape3D_ugvr5")
 
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

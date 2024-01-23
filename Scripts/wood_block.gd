@@ -2,19 +2,23 @@ extends RigidBody3D
 class_name Wood
 @onready var mesh = $MeshInstance3D
 @onready var player = $"../../Player"
+@onready var timer = $Timer
 var direction = Vector3()
 var become_usable = false
 var grabbedMaterial = StandardMaterial3D.new()
 var normalMaterial = StandardMaterial3D.new()
 var potentialMaterial = StandardMaterial3D.new()
+var stopMaterial = StandardMaterial3D.new()
 var go_to_this_point = Vector3()
 var contained = false
+var is_sleeping = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	grabbedMaterial.albedo_color = Color(0.92,0.69,0.13,1.0)
 	normalMaterial.albedo_color = Color(0.251, 0.184, 0.114)
 	potentialMaterial.albedo_color = Color(1, 0.0784314, 0.576471, 1)
+	stopMaterial.albedo_color = Color(0.721569, 0.52549, 0.0431373, 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,8 +40,11 @@ func _physics_process(delta):
 		position = position.lerp(go_to_this_point, 0.025)
 	elif player.use_wood:
 		mesh.material_override = potentialMaterial
+	elif is_sleeping and player.stop_obj:
+		mesh.material_override = stopMaterial
 	else:
 		mesh.material_override = normalMaterial
+		is_sleeping = false
 		
 	if (sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
 		sleeping = false
@@ -47,9 +54,16 @@ func get_used():
 	
 func get_stopped():
 	sleeping = true
+	is_sleeping = true
+	timer.start()
 
 func _on_body_exited(body):
 	become_usable = false
 
 func _on_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 	become_usable = false
+
+func _on_timer_timeout():
+	is_sleeping = false
+	sleeping = false
+	print("IM OUT")

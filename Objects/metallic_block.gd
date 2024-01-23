@@ -2,19 +2,23 @@ extends RigidBody3D
 class_name Metal
 @onready var mesh = $MeshInstance3D
 @onready var player = $"../../Player"
+@onready var timer = $Timer
 var direction = Vector3()
 var become_magnetic = false
 var magnetizedMaterial = StandardMaterial3D.new()
 var normalMaterial = StandardMaterial3D.new()
 var potentialMaterial = StandardMaterial3D.new()
+var stopMaterial = StandardMaterial3D.new()
 var polarity = false
 var going_away = Vector3()
+var is_sleeping = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	magnetizedMaterial.albedo_color = Color(0.92,0.69,0.13,1.0)
 	normalMaterial.albedo_color = Color(0,0,0,1.0)
 	potentialMaterial.albedo_color = Color(1, 0.0784314, 0.576471, 1)
+	stopMaterial.albedo_color = Color(0.721569, 0.52549, 0.0431373, 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -31,8 +35,11 @@ func _physics_process(delta):
 		mesh.material_override = magnetizedMaterial
 	elif player.is_magnet:
 		mesh.material_override = potentialMaterial
+	elif is_sleeping and player.stop_obj:
+		mesh.material_override = stopMaterial
 	else:
 		mesh.material_override = normalMaterial
+		is_sleeping = false
 		
 	if (sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
 		sleeping = false
@@ -42,3 +49,10 @@ func go_to_magnet():
 	
 func get_stopped():
 	sleeping = true
+	is_sleeping = true
+	timer.start()
+	
+func _on_timer_timeout():
+	is_sleeping = false
+	sleeping = false
+	print("IM OUT")

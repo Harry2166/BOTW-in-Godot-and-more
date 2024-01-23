@@ -2,10 +2,11 @@ res://Level/level_1.tscn
 res://Objects/wood_block.tscn
 res://Objects/player.tscn
 res://Objects/metallic_bad_box.tscn
-res://Scripts/player.gd
-res://Scripts/player_data.gd
-res://Scripts/wood_block.gd
-res://Objects/metallic_block.gd
 res://Objects/ball.tscn
 res://Scripts/ball.gd
+res://Objects/metallic_block.gd
+res://Scripts/wood_block.gd
+res://Objects/metallic_block.tscn
 res://Scripts/metallic_bad_box.gd
+res://Objects/metallic_block_negative.tscn
+res://Scripts/metallic_block_negative.gd
