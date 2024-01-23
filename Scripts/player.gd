@@ -80,7 +80,7 @@ func _process(delta):
 				crosshair.visible = true
 				ability_text.text = "Current Ability: Wood"
 				
-	if Input.is_action_just_pressed("press") and is_magnet:
+	if Input.is_action_just_pressed("A") and is_magnet:
 		player_polarity = !player_polarity
 		polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
 	

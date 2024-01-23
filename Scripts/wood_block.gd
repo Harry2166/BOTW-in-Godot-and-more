@@ -18,17 +18,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("A") and player.use_wood and become_usable:
+	if Input.is_action_just_pressed("A") and player.use_wood and become_usable:
 		contained = true
 		
-	if Input.is_action_just_released("A") and not player.use_wood:
+	elif Input.is_action_just_released("cancel"):
+		contained = false
 		become_usable = false
+	
+	if not player.use_wood:
+		become_usable = false
+		contained = false
 	
 func _physics_process(delta):
 	if become_usable and player.use_wood and contained:
 		mesh.material_override = grabbedMaterial
 		go_to_this_point = Vector3(player.wood_location.global_position.x,player.wood_location.global_position.y, player.wood_location.global_position.z)
-		print(go_to_this_point)
 		position = position.lerp(go_to_this_point, 0.025)
 	elif player.use_wood:
 		mesh.material_override = potentialMaterial
