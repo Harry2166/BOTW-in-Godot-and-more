@@ -74,6 +74,12 @@ script = ExtResource("4_v17ts")
 [node name="StaticBody3D" parent="." instance=ExtResource("6_va835")]
 transform = Transform3D(-3.27835e-07, 0, 7.5, 0, 7.5, 0, -7.5, 0, -3.27835e-07, 13, 1.36424e-12, 6.07035)
 
+[node name="Balls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5846, 5.25077, 13.8359)
+
+[node name="Ball" parent="Balls" instance=ExtResource("10_cnhcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3088, 6.14243, -13.4927)
+
 [node name="Obstacles" type="Node3D" parent="."]
 
 [node name="MetallicBadBox" parent="Obstacles" instance=ExtResource("7_gajds")]
@@ -84,6 +90,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.048, 2.78016, 0)
 
 [node name="MetallicBadBox3" parent="Obstacles" instance=ExtResource("7_gajds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5846, 5.25077, 13.8359)
+collision_layer = 1
+collision_mask = 3
 
 [node name="MetallicBlocksNegative" type="Node3D" parent="."]
 
@@ -106,9 +114,6 @@ transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -27.
 
 [node name="WoodBlock2" parent="Wood" instance=ExtResource("9_81uec")]
 transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, 31.8237, 12.0416, -20.6336)
-
-[node name="Ball" parent="." instance=ExtResource("10_cnhcy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2758, 11.3932, 0.343151)
 
 [node name="GridMap" type="GridMap" parent="."]
 

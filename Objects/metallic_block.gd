@@ -33,6 +33,12 @@ func _physics_process(delta):
 		mesh.material_override = potentialMaterial
 	else:
 		mesh.material_override = normalMaterial
+		
+	if (sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
+		sleeping = false
 	
 func go_to_magnet():
 	become_magnetic = true
+	
+func get_stopped():
+	sleeping = true

@@ -44,6 +44,7 @@ var snap_vector = Vector3.ZERO
 
 var is_magnet = false
 var use_wood = false
+var stop_obj = false
 var collision_point = Vector3()
 
 func _ready():
@@ -67,13 +68,14 @@ func _process(delta):
 		num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		currAbilityIdx += 1
-		match (currAbilityIdx % 3):
+		match (currAbilityIdx % 4):
 			0:
 				PlayerData.current_ability = PlayerData.Ability.NONE
 				is_magnet = false
 				use_wood = false
 				magnet_collision.disabled = true
 				crosshair.visible = false
+				stop_obj = false
 				ability_text.text = "Current Ability: None"
 			1:
 				PlayerData.current_ability = PlayerData.Ability.MAGNET
@@ -81,6 +83,7 @@ func _process(delta):
 				use_wood = false
 				crosshair.visible = false
 				magnet_collision.disabled = false
+				stop_obj = false
 				ability_text.text = "Current Ability: Magnet"
 			2:
 				PlayerData.current_ability = PlayerData.Ability.WOOD
@@ -88,7 +91,16 @@ func _process(delta):
 				use_wood = true
 				magnet_collision.disabled = true
 				crosshair.visible = true
+				stop_obj = false
 				ability_text.text = "Current Ability: Wood"
+			3:
+				PlayerData.current_ability = PlayerData.Ability.WOOD
+				is_magnet = false
+				use_wood = false
+				magnet_collision.disabled = true
+				crosshair.visible = true
+				stop_obj = true
+				ability_text.text = "Current Ability: Stasis"
 				
 	if Input.is_action_just_pressed("A") and is_magnet:
 		player_polarity = !player_polarity
@@ -112,11 +124,13 @@ func _physics_process(delta):
 		#if collision.collider.is_in_group("bodies"):
 			#collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push)
 	
-	if aim_ray.is_colliding() and use_wood:
-		collision_point = aim_ray.get_collision_point()
-		extra_crosshair.visible = true
-		if aim_ray.get_collider().has_method("get_used"):
+	if aim_ray.is_colliding():
+		if use_wood and aim_ray.get_collider().has_method("get_used"):
+			extra_crosshair.visible = true
 			aim_ray.get_collider().get_used()
+		if stop_obj and aim_ray.get_collider().has_method("get_stopped"):
+			extra_crosshair.visible = true
+			if Input.is_action_pressed("A"): aim_ray.get_collider().get_stopped()
 	else:
 		extra_crosshair.visible = false
 		#print(aim_ray.get_collider().name)
