@@ -17,6 +17,7 @@ func _physics_process(delta):
 	if (is_sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
 		sleeping = false
 		is_sleeping = false
+		player.stopped_objs = 1
 	if is_sleeping and player.stop_obj:
 		mesh.material_override = stopMaterial
 	else:
@@ -31,4 +32,4 @@ func get_stopped():
 func _on_timer_timeout():
 	is_sleeping = false
 	sleeping = false
-	print("IM OUT")
+	player.stopped_objs = 1

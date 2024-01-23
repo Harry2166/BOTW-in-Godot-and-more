@@ -12,13 +12,3 @@ func go_to_magnet():
 
 func hurt_player():
 	print("ouch")
-	
-func get_stopped():
-	sleeping = true
-	is_sleeping = true
-	$Timer.start()
-	
-func _on_timer_timeout():
-	is_sleeping = false
-	sleeping = false
-	print("IM OUT")

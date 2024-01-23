@@ -46,9 +46,10 @@ func _physics_process(delta):
 		mesh.material_override = normalMaterial
 		is_sleeping = false
 		
-	if (sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
+	if (is_sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
+		is_sleeping = false
 		sleeping = false
-		
+		player.stopped_objs = 1
 func get_used():
 	become_usable = true
 	
@@ -66,4 +67,4 @@ func _on_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 func _on_timer_timeout():
 	is_sleeping = false
 	sleeping = false
-	print("IM OUT")
+	player.stopped_objs = 1

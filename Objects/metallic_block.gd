@@ -2,7 +2,6 @@ extends RigidBody3D
 class_name Metal
 @onready var mesh = $MeshInstance3D
 @onready var player = $"../../Player"
-@onready var timer = $Timer
 var direction = Vector3()
 var become_magnetic = false
 var magnetizedMaterial = StandardMaterial3D.new()
@@ -41,8 +40,10 @@ func _physics_process(delta):
 		mesh.material_override = normalMaterial
 		is_sleeping = false
 		
-	if (sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
+	if (is_sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
+		is_sleeping = false
 		sleeping = false
+		player.stopped_objs = 1
 	
 func go_to_magnet():
 	become_magnetic = true
@@ -50,9 +51,9 @@ func go_to_magnet():
 func get_stopped():
 	sleeping = true
 	is_sleeping = true
-	timer.start()
+	$Timer.start()
 	
 func _on_timer_timeout():
 	is_sleeping = false
 	sleeping = false
-	print("IM OUT")
+	player.stopped_objs = 1

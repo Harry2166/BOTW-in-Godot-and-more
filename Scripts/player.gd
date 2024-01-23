@@ -45,6 +45,7 @@ var snap_vector = Vector3.ZERO
 var is_magnet = false
 var use_wood = false
 var stop_obj = false
+var stopped_objs = 1
 var collision_point = Vector3()
 
 func _ready():
@@ -100,6 +101,7 @@ func _process(delta):
 				magnet_collision.disabled = true
 				crosshair.visible = true
 				stop_obj = true
+				stopped_objs = 1
 				ability_text.text = "Current Ability: Stasis"
 				
 	if Input.is_action_just_pressed("A") and is_magnet:
@@ -130,7 +132,9 @@ func _physics_process(delta):
 			aim_ray.get_collider().get_used()
 		if stop_obj and aim_ray.get_collider().has_method("get_stopped"):
 			extra_crosshair.visible = true
-			if Input.is_action_pressed("A"): aim_ray.get_collider().get_stopped()
+			if Input.is_action_pressed("A") and stopped_objs == 1: 
+				aim_ray.get_collider().get_stopped()
+				stopped_objs -= 1
 	else:
 		extra_crosshair.visible = false
 		#print(aim_ray.get_collider().name)

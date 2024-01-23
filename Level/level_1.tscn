@@ -88,11 +88,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.12007, -29.5616)
 [node name="MetallicBadBox2" parent="Obstacles" instance=ExtResource("7_gajds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.048, 2.78016, 0)
 
-[node name="MetallicBadBox3" parent="Obstacles" instance=ExtResource("7_gajds")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5846, 5.25077, 13.8359)
-collision_layer = 1
-collision_mask = 3
-
 [node name="MetallicBlocksNegative" type="Node3D" parent="."]
 
 [node name="MetallicBlockNegative" parent="MetallicBlocksNegative" instance=ExtResource("8_xtmbd")]
