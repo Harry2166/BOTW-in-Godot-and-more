@@ -1,9 +1,10 @@
+GridMap
+MeshInstance3D
+CollisionShape3D
+RigidBody3D
 TextureRect
 Area3D
 Node3D
-CollisionShape3D
-MeshInstance3D
-RigidBody3D
 StaticBody3D
 RayCast3D
 TextEdit

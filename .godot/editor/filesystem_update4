@@ -3,3 +3,4 @@ res://Objects/wood_block.tscn
 res://Objects/player.tscn
 res://Objects/metallic_bad_box.tscn
 res://Scripts/player.gd
+res://Objects/ball.tscn

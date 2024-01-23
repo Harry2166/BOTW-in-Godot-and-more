@@ -57,11 +57,7 @@ func _ready():
 	extra_crosshair.visible = false
 
 func _process(delta):
-	
 	if crosshair.position.x != (get_viewport().size.x / 2 - 32):
-		print(get_viewport().size.y)
-		ability_text.position.x = get_viewport().size.x - 256
-		ability_text.position.y = get_viewport().size.y - 995
 		crosshair.position.x = get_viewport().size.x / 2 - 32
 		crosshair.position.y = get_viewport().size.y / 2 - 64
 		extra_crosshair.position.x = get_viewport().size.x / 2 - 32
