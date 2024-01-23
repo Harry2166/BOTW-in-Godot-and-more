@@ -74,6 +74,11 @@ transform = Transform3D(1, 0, 0, 0, 0.987689, -0.156435, 0, 0.156435, 0.987689, 
 target_position = Vector3(0, -1, -20)
 collision_mask = 4
 
+[node name="WhereWoodGoes" type="Area3D" parent="SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.16216, -25.1434)
+collision_layer = 0
+collision_mask = 0
+
 [node name="MagneticArea" type="Area3D" parent="."]
 collision_mask = 2
 

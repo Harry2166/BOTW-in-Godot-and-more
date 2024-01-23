@@ -11,7 +11,6 @@ func _physics_process(delta):
 		if polarity != player.player_polarity:
 			position = position.lerp(player.position, 0.025)
 		else:
-			var going_away = Vector3(player.velocity.x, position.y, player.velocity.z)
 			position = position.lerp(going_away, 0.025)
 		mesh.material_override = magnetizedMaterial
 	elif player.is_magnet:

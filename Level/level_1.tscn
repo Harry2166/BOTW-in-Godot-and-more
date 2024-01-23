@@ -80,11 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.048, 2.78016, 0)
 [node name="MetallicBadBox3" parent="Obstacles" instance=ExtResource("7_gajds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5846, 5.25077, 13.8359)
 
-[node name="test" type="Node3D" parent="."]
-
-[node name="MetallicBlock" parent="test" instance=ExtResource("1_jfyb3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.4676, 26.7156)
-
 [node name="MetallicBlocksNegative" type="Node3D" parent="."]
 
 [node name="MetallicBlockNegative" parent="MetallicBlocksNegative" instance=ExtResource("8_xtmbd")]
@@ -105,10 +100,4 @@ transform = Transform3D(1, 0, 0, 0, 0.969919, -0.243429, 0, 0.243429, 0.969919, 
 transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -27.5069, 12.0416, 0)
 
 [node name="WoodBlock2" parent="Wood" instance=ExtResource("9_81uec")]
-transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -27.5069, 12.0416, 9.18838)
-
-[node name="WoodBlock3" parent="Wood" instance=ExtResource("9_81uec")]
-transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -13.6149, 12.0416, 9.18838)
-
-[node name="WoodBlock4" parent="Wood" instance=ExtResource("9_81uec")]
-transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, -19.5028, 22.1086, 9.18838)
+transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, 31.8237, 12.0416, -20.6336)

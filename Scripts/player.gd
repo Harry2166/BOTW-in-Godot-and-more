@@ -39,9 +39,11 @@ var snap_vector = Vector3.ZERO
 @onready var magnet_collision = $MagneticArea/MagneticCollisionShape
 @onready var polarity_text = $Polarity
 @onready var crosshair = $Crosshair
+@onready var wood_location = $SpringArm3D/Camera3D/WhereWoodGoes
 
 var is_magnet = false
 var use_wood = false
+var collision_point = Vector3()
 
 func _ready():
 	health_text.text = "Health: " + str(PlayerData.curr_health)
@@ -101,7 +103,10 @@ func _physics_process(delta):
 			#collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push)
 	
 	if aim_ray.is_colliding():
-		print(aim_ray.get_collider().name)
+		collision_point = aim_ray.get_collision_point()
+		if aim_ray.get_collider().has_method("get_used") and use_wood:
+			aim_ray.get_collider().get_used()
+		#print(aim_ray.get_collider().name)
 	
 #func rotate_player():
 	#rotate_y(deg_to_rad(joystickRight.get_output().x * mouse_sensitivity))

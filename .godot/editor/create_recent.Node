@@ -1,6 +1,6 @@
-TextureRect
-Node3D
 Area3D
+Node3D
+TextureRect
 CollisionShape3D
 MeshInstance3D
 RigidBody3D
