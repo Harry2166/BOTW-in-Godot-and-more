@@ -37,6 +37,7 @@ var snap_vector = Vector3.ZERO
 @onready var health_text = $Health
 @onready var aim_ray = $SpringArm3D/Camera3D/RayCast3D
 @onready var magnet_collision = $MagneticArea/MagneticCollisionShape
+@onready var magnet_collision_shape = $MagneticArea/MeshInstance3D
 @onready var polarity_text = $Polarity
 @onready var crosshair = $Crosshair
 @onready var extra_crosshair = $CrosshairExtra
@@ -57,6 +58,7 @@ func _ready():
 	extra_crosshair.position.x = get_viewport().size.x / 2 - 32
 	extra_crosshair.position.y = get_viewport().size.y / 2 - 64
 	extra_crosshair.visible = false
+	magnet_collision_shape.visible = false
 
 func _process(delta):
 	if crosshair.position.x != (get_viewport().size.x / 2 - 32):
@@ -77,6 +79,7 @@ func _process(delta):
 				magnet_collision.disabled = true
 				crosshair.visible = false
 				stop_obj = false
+				magnet_collision_shape.visible = false
 				ability_text.text = "Current Ability: None"
 			1:
 				PlayerData.current_ability = PlayerData.Ability.MAGNET
@@ -85,6 +88,7 @@ func _process(delta):
 				crosshair.visible = false
 				magnet_collision.disabled = false
 				stop_obj = false
+				magnet_collision_shape.visible = true
 				ability_text.text = "Current Ability: Magnet"
 			2:
 				PlayerData.current_ability = PlayerData.Ability.WOOD
@@ -93,6 +97,7 @@ func _process(delta):
 				magnet_collision.disabled = true
 				crosshair.visible = true
 				stop_obj = false
+				magnet_collision_shape.visible = false
 				ability_text.text = "Current Ability: Wood"
 			3:
 				PlayerData.current_ability = PlayerData.Ability.WOOD
@@ -102,6 +107,7 @@ func _process(delta):
 				crosshair.visible = true
 				stop_obj = true
 				stopped_objs = 1
+				magnet_collision_shape.visible = false
 				ability_text.text = "Current Ability: Stasis"
 				
 	if Input.is_action_just_pressed("A") and is_magnet:

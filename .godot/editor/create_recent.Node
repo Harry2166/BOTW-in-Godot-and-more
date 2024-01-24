@@ -1,7 +1,7 @@
+MeshInstance3D
 Timer
 Node3D
 GridMap
-MeshInstance3D
 CollisionShape3D
 RigidBody3D
 TextureRect

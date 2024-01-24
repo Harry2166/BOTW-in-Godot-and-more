@@ -20,4 +20,4 @@ func _process(delta):
 		rotate_y(deg_to_rad(SPEED))	
 
 func minion():
-	print("banana")
+	pass

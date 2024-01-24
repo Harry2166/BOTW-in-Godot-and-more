@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=13 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
 [ext_resource type="Texture2D" uid="uid://laln5uwo2dok" path="res://Objects/crosshair161.png" id="2_mm8v2"]
@@ -29,6 +29,14 @@ height = 2.35
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_30ohv"]
 radius = 3.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpn34"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_qgo4w"]
+material = SubResource("StandardMaterial3D_gpn34")
+inner_radius = 3.0
+outer_radius = 3.5
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_urbq3")
@@ -81,11 +89,14 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="MagneticArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.734, 0)
 collision_mask = 2
 
 [node name="MagneticCollisionShape" type="CollisionShape3D" parent="MagneticArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73399, 0)
 shape = SubResource("SphereShape3D_30ohv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MagneticArea"]
+mesh = SubResource("TorusMesh_qgo4w")
 
 [node name="Ability" type="TextEdit" parent="."]
 offset_left = 918.0
