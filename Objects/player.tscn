@@ -103,6 +103,11 @@ _data = {
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_urbq3")
 
+[node name="WhereBombSpawns" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3.40504, -0.00384045)
+collision_layer = 0
+collision_mask = 0
+
 [node name="Pivot" type="Marker3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]

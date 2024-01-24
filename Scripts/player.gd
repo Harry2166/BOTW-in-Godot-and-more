@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -42,10 +41,12 @@ var snap_vector = Vector3.ZERO
 @onready var crosshair = $Crosshair
 @onready var extra_crosshair = $CrosshairExtra
 @onready var wood_location = $SpringArm3D/Camera3D/WhereWoodGoes
+@onready var bomb_location = $WhereBombSpawns
 @onready var weapon = $WeaponPivot/MeshInstance3D
 @onready var anim_player = $AnimationPlayer
 @onready var weapon_hitbox = $WeaponPivot/MeshInstance3D/Area3D/CollisionShape3D
 @onready var weapon_hitbox_ray = $WeaponPivot/MeshInstance3D/Area3D/Weapon_Collision
+@onready var level = $".."
 var bomb = preload("res://Objects/bomb.tscn")
 
 var collision_point = Vector3()
@@ -133,6 +134,7 @@ func _process(delta):
 				use_wood = false
 				magnet_collision.disabled = true
 				crosshair.visible = false
+				extra_crosshair.visible = false
 				stop_obj = false
 				magnet_collision_shape1.visible = false
 				bomb_guy = true
@@ -273,6 +275,7 @@ func _on_animation_player_animation_finished(anim_name):
 		
 func spawn_bomb():
 	var bomb_instance = bomb.instantiate()
+	bomb_instance.set_position(bomb_location.position)
 	bomb_spawned = true
 	bomb_objs -= 1
 	add_child(bomb_instance)

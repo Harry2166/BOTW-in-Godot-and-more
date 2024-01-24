@@ -1,6 +1,6 @@
+MeshInstance3D
 CollisionShape3D
 CollisionPolygon3D
-MeshInstance3D
 RigidBody3D
 RayCast3D
 Area3D
