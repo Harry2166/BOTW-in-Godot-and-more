@@ -42,6 +42,7 @@ var snap_vector = Vector3.ZERO
 @onready var extra_crosshair = $CrosshairExtra
 @onready var wood_location = $SpringArm3D/Camera3D/WhereWoodGoes
 @onready var bomb_location = $WhereBombSpawns
+@onready var super_jump_bomb_location = $WhereBombSpawnsSuperJump
 @onready var weapon = $WeaponPivot/MeshInstance3D
 @onready var anim_player = $AnimationPlayer
 @onready var weapon_hitbox = $WeaponPivot/MeshInstance3D/Area3D/CollisionShape3D
@@ -55,6 +56,7 @@ var use_wood = false
 var stop_obj = false
 var bomb_guy = false
 var bomb_spawned = false
+var super_jump = false
 var stopped_objs = 1
 var bomb_objs = 1
 var hit_amount = 0
@@ -86,7 +88,7 @@ func _process(delta):
 		num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		currAbilityIdx += 1
-		match (currAbilityIdx % 5):
+		match (currAbilityIdx % 6):
 			0:
 				PlayerData.current_ability = PlayerData.Ability.NONE
 				is_magnet = false
@@ -96,6 +98,7 @@ func _process(delta):
 				stop_obj = false
 				magnet_collision_shape1.visible = false
 				bomb_guy = false
+				super_jump = false
 				ability_text.text = "Current Ability: None"
 			1:
 				PlayerData.current_ability = PlayerData.Ability.MAGNET
@@ -105,7 +108,8 @@ func _process(delta):
 				magnet_collision.disabled = false
 				stop_obj = false
 				magnet_collision_shape1.visible = true
-				bomb_guy = false				
+				bomb_guy = false
+				super_jump = false
 				ability_text.text = "Current Ability: Magnet"
 			2:
 				PlayerData.current_ability = PlayerData.Ability.WOOD
@@ -115,7 +119,8 @@ func _process(delta):
 				crosshair.visible = true
 				stop_obj = false
 				magnet_collision_shape1.visible = false
-				bomb_guy = false				
+				bomb_guy = false
+				super_jump = false
 				ability_text.text = "Current Ability: Wood"
 			3:
 				PlayerData.current_ability = PlayerData.Ability.STASIS
@@ -126,7 +131,8 @@ func _process(delta):
 				stop_obj = true
 				stopped_objs = 1
 				magnet_collision_shape1.visible = false
-				bomb_guy = false				
+				bomb_guy = false
+				super_jump = false
 				ability_text.text = "Current Ability: Stasis"
 			4:
 				PlayerData.current_ability = PlayerData.Ability.BOMB
@@ -138,13 +144,28 @@ func _process(delta):
 				stop_obj = false
 				magnet_collision_shape1.visible = false
 				bomb_guy = true
+				super_jump = false
 				ability_text.text = "Current Ability: Bombs"
+			5:
+				PlayerData.current_ability = PlayerData.Ability.BOMB
+				is_magnet = false
+				use_wood = false
+				magnet_collision.disabled = true
+				crosshair.visible = false
+				extra_crosshair.visible = false
+				stop_obj = false
+				magnet_collision_shape1.visible = false
+				bomb_guy = true
+				super_jump = true
+				ability_text.text = "Current Ability: Super Jump"
 				
 	if Input.is_action_just_pressed("A"):
 		if is_magnet:
 			player_polarity = !player_polarity
 			polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
-		if bomb_guy and bomb_objs == 1:
+		elif bomb_guy and bomb_objs == 1 and super_jump:
+			super_jump_time()
+		elif bomb_guy and bomb_objs == 1:
 			spawn_bomb()
 	
 func _physics_process(delta):
@@ -276,6 +297,13 @@ func _on_animation_player_animation_finished(anim_name):
 func spawn_bomb():
 	var bomb_instance = bomb.instantiate()
 	bomb_instance.set_position(bomb_location.position)
+	bomb_spawned = true
+	bomb_objs -= 1
+	add_child(bomb_instance)
+	
+func super_jump_time():
+	var bomb_instance = bomb.instantiate()
+	bomb_instance.set_position(super_jump_bomb_location.position)
 	bomb_spawned = true
 	bomb_objs -= 1
 	add_child(bomb_instance)
