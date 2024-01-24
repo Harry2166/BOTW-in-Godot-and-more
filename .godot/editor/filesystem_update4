@@ -1,5 +1,4 @@
 res://Level/level_1.tscn
-res://Scripts/player.gd
 res://Objects/ball.tscn
 res://Objects/wood_block.tscn
 res://Objects/metallic_block.tscn

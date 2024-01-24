@@ -64,6 +64,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8fl0c"]
 resource_name = "attack"
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -71,7 +72,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.3, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.258927, 0.215114, -0.24298), Vector3(-0.258927, 0.215114, -0.826182), Vector3(-0.259, 0.215, -0.605)]
