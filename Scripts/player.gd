@@ -21,13 +21,13 @@ func get_coin():
 @export var controller_sensitivity = 3
 @export var rot_speed = 5
 @export var player_polarity = true
-var num_of_jumps = 2
 var currAbilityIdx = 0
 #@export var joystickRightPath
 #@onready var joystickRight : VirtualJoystick = get_node(joystickRightPath)
 
 # var velocity = Vector3.ZERO
 var snap_vector = Vector3.ZERO
+#var num_of_jumps = 2
 
 @onready var spring_arm = $SpringArm3D
 @onready var pivot = $Pivot
@@ -84,8 +84,8 @@ func _process(delta):
 		anim_player.play("attack")
 		weapon_hitbox.disabled = false
 
-	if num_of_jumps < 1 and is_on_floor():
-		num_of_jumps = 2
+	#if num_of_jumps < 1 and is_on_floor():
+		#num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		currAbilityIdx += 1
 		match (currAbilityIdx % 6):
@@ -242,11 +242,11 @@ func jump():
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		snap_vector = Vector3.ZERO
 		velocity.y = jump_impulse
-		num_of_jumps -= 1
-	if Input.is_action_just_pressed("jump") and num_of_jumps > 0 and not is_on_floor():
-		num_of_jumps -= 1
-		snap_vector = Vector3.ZERO
-		velocity.y = jump_impulse
+		#num_of_jumps -= 1
+	#if Input.is_action_just_pressed("jump") and num_of_jumps > 0 and not is_on_floor():
+		#num_of_jumps -= 1
+		#snap_vector = Vector3.ZERO
+		#velocity.y = jump_impulse
 	if Input.is_action_just_released("jump") and velocity.y > jump_impulse / 2:
 		velocity.y = jump_impulse / 2
 		
