@@ -57,9 +57,13 @@ var stop_obj = false
 var bomb_guy = false
 var bomb_spawned = false
 var super_jump = false
+var strength = 0.0
+var strength_speed = 5.0
+var max_strength = 10.0
 var stopped_objs = 1
 var bomb_objs = 1
 var hit_amount = 0
+var bomb_instance
 
 func _ready():
 	health_text.text = "Health: " + str(PlayerData.curr_health)
@@ -80,7 +84,8 @@ func _process(delta):
 		extra_crosshair.position.x = get_viewport().size.x / 2 - 32
 		extra_crosshair.position.y = get_viewport().size.y / 2 - 64
 		
-	if Input.is_action_just_pressed("zr-shoulder"):
+	if Input.is_action_just_pressed("zr-shoulder") and stop_obj:
+		$WeaponPivot.visible = true
 		anim_player.play("attack")
 		weapon_hitbox.disabled = false
 
@@ -167,6 +172,10 @@ func _process(delta):
 			super_jump_time()
 		elif bomb_guy and bomb_objs == 1:
 			spawn_bomb()
+			
+	if Input.is_action_just_pressed("zr-shoulder") and bomb_guy:
+		strength = min(max_strength, strength + delta * strength_speed)
+		release_object()
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
@@ -197,11 +206,6 @@ func _physics_process(delta):
 				stopped_objs -= 1
 	else:
 		extra_crosshair.visible = false
-		#print(aim_ray.get_collider().name)
-	
-#func rotate_player():
-	#rotate_y(deg_to_rad(joystickRight.get_output().x * mouse_sensitivity))
-	#spring_arm.rotate_x(deg_to_rad(joystickRight.get_output().y * mouse_sensitivity))	
 	
 func get_input_vector():
 	var input_vector = Vector3.ZERO
@@ -220,7 +224,6 @@ func apply_movement(input_vector, direction, delta):
 	if direction != Vector3.ZERO:
 		velocity.x = velocity.move_toward(direction * max_speed, acceleration * delta).x
 		velocity.z = velocity.move_toward(direction * max_speed, acceleration * delta).z
-#		pivot.look_at(global_transform.origin + direction, Vector3.UP)
 		pivot.rotation.y = lerp_angle(pivot.rotation.y, atan2(-input_vector.x, -input_vector.z), rot_speed * delta)
 		
 func apply_friction(direction, delta):
@@ -242,11 +245,6 @@ func jump():
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		snap_vector = Vector3.ZERO
 		velocity.y = jump_impulse
-		#num_of_jumps -= 1
-	#if Input.is_action_just_pressed("jump") and num_of_jumps > 0 and not is_on_floor():
-		#num_of_jumps -= 1
-		#snap_vector = Vector3.ZERO
-		#velocity.y = jump_impulse
 	if Input.is_action_just_released("jump") and velocity.y > jump_impulse / 2:
 		velocity.y = jump_impulse / 2
 		
@@ -293,17 +291,25 @@ func _on_area_3d_body_entered(body):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
 		weapon_hitbox.disabled = true
+		$WeaponPivot.visible = false
+		
 		
 func spawn_bomb():
-	var bomb_instance = bomb.instantiate()
+	bomb_instance = bomb.instantiate()
 	bomb_instance.set_position(bomb_location.position)
 	bomb_spawned = true
 	bomb_objs -= 1
 	add_child(bomb_instance)
 	
 func super_jump_time():
-	var bomb_instance = bomb.instantiate()
+	bomb_instance = bomb.instantiate()
 	bomb_instance.set_position(super_jump_bomb_location.position)
 	bomb_spawned = true
 	bomb_objs -= 1
 	add_child(bomb_instance)
+	
+func release_object():
+	var dir = global_transform.basis.z.normalized() * strength + Vector3(0,5,0)
+	remove_child(bomb_instance)
+	bomb_instance.get_thrown(dir) # is it like this????
+	

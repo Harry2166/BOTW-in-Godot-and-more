@@ -219,6 +219,7 @@ texture = ExtResource("3_5lmoo")
 
 [node name="WeaponPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.669926, 1.4251, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponPivot"]
 transform = Transform3D(0.2, 0, 0, 0, 0.517638, 0.193185, 0, -1.93185, 0.0517638, -0.258927, 0.215114, -0.60466)
