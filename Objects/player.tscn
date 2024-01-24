@@ -221,6 +221,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -2.38419e-07, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_5rpa8")
 disabled = true
 
+[node name="Weapon_Collision" type="RayCast3D" parent="WeaponPivot/MeshInstance3D/Area3D"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.84217e-14, 4.76837e-07, 1, -0.823869, -0.249061, -1.27524)
+collision_mask = 16
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../WeaponPivot/MeshInstance3D")
 libraries = {

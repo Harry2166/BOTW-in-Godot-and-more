@@ -1,3 +1,4 @@
+RayCast3D
 Area3D
 CollisionShape3D
 AnimationPlayer
@@ -8,7 +9,6 @@ GridMap
 RigidBody3D
 TextureRect
 StaticBody3D
-RayCast3D
 TextEdit
 Marker3D
 CharacterBody3D

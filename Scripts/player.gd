@@ -45,6 +45,7 @@ var snap_vector = Vector3.ZERO
 @onready var weapon = $WeaponPivot/MeshInstance3D
 @onready var anim_player = $AnimationPlayer
 @onready var weapon_hitbox = $WeaponPivot/MeshInstance3D/Area3D/CollisionShape3D
+@onready var weapon_hitbox_ray = $WeaponPivot/MeshInstance3D/Area3D/Weapon_Collision
 
 var is_magnet = false
 var use_wood = false
@@ -240,7 +241,9 @@ func _on_hit_detection_body_entered(body):
 		health_text.text = "Health: " + str(PlayerData.curr_health)
 
 func _on_area_3d_body_entered(body):
-	print(body.name)
+	if body.is_sleeping:
+		collision_point = weapon_hitbox_ray.get_collision_point()
+		print(collision_point)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
