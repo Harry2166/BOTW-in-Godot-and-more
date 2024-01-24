@@ -47,6 +47,21 @@ material = SubResource("StandardMaterial3D_7ekpg")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5rpa8"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
+[sub_resource type="Animation" id="Animation_jpq11"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.258927, 0.215114, -0.60466)]
+}
+
 [sub_resource type="Animation" id="Animation_8fl0c"]
 resource_name = "attack"
 tracks/0/type = "value"
@@ -75,21 +90,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.258927, 0.215114, -0.60466), Vector3(-0.258927, 0.360051, -0.60466), Vector3(-0.259, 0.215, -0.605)]
-}
-
-[sub_resource type="Animation" id="Animation_jpq11"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.258927, 0.215114, -0.60466)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nd8k8"]

@@ -142,3 +142,9 @@ zl-shoulder={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":4,"axis_value":1.0,"script":null)
 ]
 }
+
+[physics]
+
+common/physics_ticks_per_second=90
+common/physics_jitter_fix=0.0
+3d/time_before_sleep=0.1
