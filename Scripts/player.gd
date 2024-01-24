@@ -46,13 +46,17 @@ var snap_vector = Vector3.ZERO
 @onready var anim_player = $AnimationPlayer
 @onready var weapon_hitbox = $WeaponPivot/MeshInstance3D/Area3D/CollisionShape3D
 @onready var weapon_hitbox_ray = $WeaponPivot/MeshInstance3D/Area3D/Weapon_Collision
+var bomb = preload("res://Objects/bomb.tscn")
 
+var collision_point = Vector3()
 var is_magnet = false
 var use_wood = false
 var stop_obj = false
+var bomb_guy = false
+var bomb_spawned = false
 var stopped_objs = 1
+var bomb_objs = 1
 var hit_amount = 0
-var collision_point = Vector3()
 
 func _ready():
 	health_text.text = "Health: " + str(PlayerData.curr_health)
@@ -81,7 +85,7 @@ func _process(delta):
 		num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		currAbilityIdx += 1
-		match (currAbilityIdx % 4):
+		match (currAbilityIdx % 5):
 			0:
 				PlayerData.current_ability = PlayerData.Ability.NONE
 				is_magnet = false
@@ -90,6 +94,7 @@ func _process(delta):
 				crosshair.visible = false
 				stop_obj = false
 				magnet_collision_shape1.visible = false
+				bomb_guy = false
 				ability_text.text = "Current Ability: None"
 			1:
 				PlayerData.current_ability = PlayerData.Ability.MAGNET
@@ -99,6 +104,7 @@ func _process(delta):
 				magnet_collision.disabled = false
 				stop_obj = false
 				magnet_collision_shape1.visible = true
+				bomb_guy = false				
 				ability_text.text = "Current Ability: Magnet"
 			2:
 				PlayerData.current_ability = PlayerData.Ability.WOOD
@@ -108,6 +114,7 @@ func _process(delta):
 				crosshair.visible = true
 				stop_obj = false
 				magnet_collision_shape1.visible = false
+				bomb_guy = false				
 				ability_text.text = "Current Ability: Wood"
 			3:
 				PlayerData.current_ability = PlayerData.Ability.STASIS
@@ -118,11 +125,25 @@ func _process(delta):
 				stop_obj = true
 				stopped_objs = 1
 				magnet_collision_shape1.visible = false
+				bomb_guy = false				
 				ability_text.text = "Current Ability: Stasis"
+			4:
+				PlayerData.current_ability = PlayerData.Ability.BOMB
+				is_magnet = false
+				use_wood = false
+				magnet_collision.disabled = true
+				crosshair.visible = false
+				stop_obj = false
+				magnet_collision_shape1.visible = false
+				bomb_guy = true
+				ability_text.text = "Current Ability: Bombs"
 				
-	if Input.is_action_just_pressed("A") and is_magnet:
-		player_polarity = !player_polarity
-		polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
+	if Input.is_action_just_pressed("A"):
+		if is_magnet:
+			player_polarity = !player_polarity
+			polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
+		if bomb_guy and bomb_objs == 1:
+			spawn_bomb()
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
@@ -245,11 +266,13 @@ func _on_area_3d_body_entered(body):
 	if body.is_sleeping:
 		collision_point = weapon_hitbox_ray.get_collision_point()
 		hit_amount += 1
-		#var direction = (body.global_position - collision_point).normalized()
-		#var accumulation = direction * 1.5
-		#print(accumulation)
-		#body.apply_central_impulse(accumulation)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
 		weapon_hitbox.disabled = true
+		
+func spawn_bomb():
+	var bomb_instance = bomb.instantiate()
+	bomb_spawned = true
+	bomb_objs -= 1
+	add_child(bomb_instance)

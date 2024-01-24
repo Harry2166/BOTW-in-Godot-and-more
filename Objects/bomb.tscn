@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://46evn1dtadvh"]
+
+[ext_resource type="Script" path="res://Scripts/bomb.gd" id="1_i0rfb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0vmk"]
+albedo_color = Color(0, 0.952941, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_037kc"]
+material = SubResource("StandardMaterial3D_l0vmk")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1odh7"]
+
+[node name="Bomb" type="RigidBody3D"]
+script = ExtResource("1_i0rfb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+mesh = SubResource("SphereMesh_037kc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+shape = SubResource("SphereShape3D_1odh7")
