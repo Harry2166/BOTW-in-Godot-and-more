@@ -38,12 +38,16 @@ func _physics_process(delta):
 		mesh.material_override = stopMaterial
 	else:
 		mesh.material_override = normalMaterial
+		set_collision_mask_value(5,true)
+		set_collision_layer_value(5,true)
 		is_sleeping = false
 		
 	if (is_sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
 		is_sleeping = false
 		sleeping = false
 		player.stopped_objs = 1
+		set_collision_mask_value(5,false)
+		set_collision_layer_value(5,false)
 	
 func go_to_magnet():
 	become_magnetic = true

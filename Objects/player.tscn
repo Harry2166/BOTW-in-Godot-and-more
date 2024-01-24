@@ -44,8 +44,8 @@ albedo_color = Color(0, 0, 0, 0.658824)
 [sub_resource type="BoxMesh" id="BoxMesh_nsvef"]
 material = SubResource("StandardMaterial3D_7ekpg")
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bto0j"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5rpa8"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [sub_resource type="Animation" id="Animation_8fl0c"]
 resource_name = "attack"
@@ -212,12 +212,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.669926, 1.4251, 0)
 transform = Transform3D(0.2, 0, 0, 0, 0.517638, 0.193185, 0, -1.93185, 0.0517638, -0.258927, 0.215114, -0.60466)
 mesh = SubResource("BoxMesh_nsvef")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="WeaponPivot/MeshInstance3D"]
-collision_layer = 0
+[node name="Area3D" type="Area3D" parent="WeaponPivot/MeshInstance3D"]
+collision_layer = 16
 collision_mask = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponPivot/MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_bto0j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponPivot/MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -2.38419e-07, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5rpa8")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../WeaponPivot/MeshInstance3D")
@@ -230,3 +232,5 @@ libraries = {
 [connection signal="body_shape_entered" from="MagneticArea" to="." method="_on_area_3d_body_shape_entered"]
 [connection signal="body_shape_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_shape_exited"]
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
+[connection signal="body_entered" from="WeaponPivot/MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -41,6 +41,8 @@ func _physics_process(delta):
 	elif player.use_wood:
 		mesh.material_override = potentialMaterial
 	elif is_sleeping and player.stop_obj:
+		set_collision_mask_value(5,true)
+		set_collision_layer_value(5,true)
 		mesh.material_override = stopMaterial
 	else:
 		mesh.material_override = normalMaterial
@@ -49,6 +51,8 @@ func _physics_process(delta):
 	if (is_sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
 		is_sleeping = false
 		freeze = false
+		set_collision_mask_value(5,false)
+		set_collision_layer_value(5,false)
 		player.stopped_objs = 1
 		
 func get_used():

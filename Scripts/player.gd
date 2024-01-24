@@ -44,6 +44,7 @@ var snap_vector = Vector3.ZERO
 @onready var wood_location = $SpringArm3D/Camera3D/WhereWoodGoes
 @onready var weapon = $WeaponPivot/MeshInstance3D
 @onready var anim_player = $AnimationPlayer
+@onready var weapon_hitbox = $WeaponPivot/MeshInstance3D/Area3D/CollisionShape3D
 
 var is_magnet = false
 var use_wood = false
@@ -61,6 +62,7 @@ func _ready():
 	extra_crosshair.position.y = get_viewport().size.y / 2 - 64
 	extra_crosshair.visible = false
 	magnet_collision_shape1.visible = false
+	weapon_hitbox.disabled = true
 
 func _process(delta):
 	if crosshair.position.x != (get_viewport().size.x / 2 - 32):
@@ -71,6 +73,7 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("zr-shoulder"):
 		anim_player.play("attack")
+		weapon_hitbox.disabled = false
 
 	if num_of_jumps < 1 and is_on_floor():
 		num_of_jumps = 2
@@ -235,3 +238,10 @@ func _on_hit_detection_body_entered(body):
 		body.hurt_player()
 		PlayerData.curr_health -= 1
 		health_text.text = "Health: " + str(PlayerData.curr_health)
+
+func _on_area_3d_body_entered(body):
+	print(body.name)
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "attack":
+		weapon_hitbox.disabled = true
