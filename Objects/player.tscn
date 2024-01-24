@@ -109,7 +109,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="WhereBombSpawns" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3.37883, -0.00384045)
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3.23984, -0.00384045)
 collision_layer = 0
 collision_mask = 0
 
@@ -168,6 +168,7 @@ collision_mask = 2
 shape = SubResource("SphereShape3D_30ohv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MagneticArea"]
+visible = false
 mesh = SubResource("TorusMesh_qgo4w")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MagneticArea"]

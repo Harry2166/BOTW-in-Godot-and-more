@@ -12,3 +12,4 @@ res://Scripts/player_data.gd
 res://Scripts/player.gd
 res://Objects/bomb.tscn
 res://Scripts/bomb.gd
+res://Objects/obstacle.tscn

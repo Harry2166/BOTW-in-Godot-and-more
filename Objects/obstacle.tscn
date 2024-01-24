@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7po804bwx01b"]
+[gd_scene load_steps=7 format=3 uid="uid://c7po804bwx01b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knueo"]
+albedo_color = Color(1, 0.65098, 0.501961, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_qwdk8"]
+material = SubResource("StandardMaterial3D_knueo")
 uv2_padding = 1.0
 left_to_right = 2.0
 
@@ -10,7 +14,11 @@ data = PackedVector3Array(1.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 1.5, 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_c1dcn"]
 size = Vector3(5, 1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcjpy"]
+albedo_color = Color(1, 0.65098, 0.501961, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_libq6"]
+material = SubResource("StandardMaterial3D_gcjpy")
 size = Vector3(5, 1, 1)
 
 [node name="StaticBody3D" type="StaticBody3D"]
