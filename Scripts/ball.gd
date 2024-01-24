@@ -37,4 +37,5 @@ func get_stopped():
 func _on_timer_timeout():
 	is_sleeping = false
 	freeze = false
+	print(linear_velocity)
 	player.stopped_objs = 1
