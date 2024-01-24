@@ -49,11 +49,11 @@ func go_to_magnet():
 	become_magnetic = true
 	
 func get_stopped():
-	sleeping = true
 	is_sleeping = true
+	freeze = true
 	$Timer.start()
 	
 func _on_timer_timeout():
 	is_sleeping = false
-	sleeping = false
+	freeze = false
 	player.stopped_objs = 1

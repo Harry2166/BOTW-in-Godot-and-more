@@ -48,15 +48,11 @@ func _physics_process(delta):
 		
 	if (is_sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:
 		is_sleeping = false
-		sleeping = false
+		freeze = false
 		player.stopped_objs = 1
+		
 func get_used():
 	become_usable = true
-	
-func get_stopped():
-	sleeping = true
-	is_sleeping = true
-	timer.start()
 
 func _on_body_exited(body):
 	become_usable = false
@@ -64,7 +60,12 @@ func _on_body_exited(body):
 func _on_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 	become_usable = false
 
+func get_stopped():
+	is_sleeping = true
+	freeze = true
+	timer.start()
+	
 func _on_timer_timeout():
 	is_sleeping = false
-	sleeping = false
+	freeze = false
 	player.stopped_objs = 1

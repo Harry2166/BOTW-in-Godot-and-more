@@ -8,3 +8,5 @@ res://Objects/player.tscn
 res://Scripts/player.gd
 res://Scripts/Icon.gd
 res://Scripts/ball.gd
+res://Objects/metallic_block.gd
+res://Scripts/wood_block.gd
