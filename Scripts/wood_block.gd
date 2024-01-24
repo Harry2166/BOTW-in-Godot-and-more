@@ -12,6 +12,7 @@ var stopMaterial = StandardMaterial3D.new()
 var go_to_this_point = Vector3()
 var contained = false
 var is_sleeping = false
+var accumulation = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -73,3 +74,11 @@ func _on_timer_timeout():
 	is_sleeping = false
 	freeze = false
 	player.stopped_objs = 1
+	hit(player.collision_point, player.hit_amount)
+	
+func hit(collision_point, hit_amount):
+	var direction = (global_transform.origin - collision_point).normalized()
+	var magnitude = accumulation.length() + hit_amount
+	accumulation = direction * magnitude
+	apply_central_impulse(accumulation)
+	accumulation = Vector3.ZERO

@@ -51,6 +51,7 @@ var is_magnet = false
 var use_wood = false
 var stop_obj = false
 var stopped_objs = 1
+var hit_amount = 0
 var collision_point = Vector3()
 
 func _ready():
@@ -243,7 +244,11 @@ func _on_hit_detection_body_entered(body):
 func _on_area_3d_body_entered(body):
 	if body.is_sleeping:
 		collision_point = weapon_hitbox_ray.get_collision_point()
-		body.add_constant_central_force(collision_point * 0.5)
+		hit_amount += 1
+		#var direction = (body.global_position - collision_point).normalized()
+		#var accumulation = direction * 1.5
+		#print(accumulation)
+		#body.apply_central_impulse(accumulation)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
