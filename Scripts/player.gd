@@ -243,7 +243,7 @@ func _on_hit_detection_body_entered(body):
 func _on_area_3d_body_entered(body):
 	if body.is_sleeping:
 		collision_point = weapon_hitbox_ray.get_collision_point()
-		print(collision_point)
+		body.add_constant_central_force(Vector3(4,100,4))
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
