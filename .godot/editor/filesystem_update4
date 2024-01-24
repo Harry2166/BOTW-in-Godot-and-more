@@ -7,3 +7,4 @@ res://Objects/metallic_block_negative.tscn
 res://Objects/player.tscn
 res://Scripts/player.gd
 res://Scripts/Icon.gd
+res://Scripts/ball.gd

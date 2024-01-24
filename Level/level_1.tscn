@@ -1,10 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://c45dd0jomwrh4"]
+[gd_scene load_steps=13 format=3 uid="uid://c45dd0jomwrh4"]
 
 [ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/metallic_block.tscn" id="1_jfyb3"]
 [ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
-[ext_resource type="Texture2D" uid="uid://c22hxy3qtpnow" path="res://icon.svg" id="3_ib41i"]
 [ext_resource type="PackedScene" uid="uid://bi7uoh0gpo8vp" path="res://Objects/rupee.tscn" id="3_vdn16"]
-[ext_resource type="Script" path="res://Scripts/Icon.gd" id="4_v17ts"]
 [ext_resource type="PackedScene" uid="uid://c7po804bwx01b" path="res://Objects/obstacle.tscn" id="6_va835"]
 [ext_resource type="PackedScene" uid="uid://cp2jchjgwpyij" path="res://Objects/metallic_bad_box.tscn" id="7_gajds"]
 [ext_resource type="PackedScene" uid="uid://djwarijri3qf8" path="res://Objects/metallic_block_negative.tscn" id="8_xtmbd"]
@@ -64,13 +62,6 @@ transform = Transform3D(-0.869348, -0.4942, 0, 0.4942, -0.869348, 0, 0, 0, 1, -1
 [node name="Rupee" parent="." instance=ExtResource("3_vdn16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.88931, 0)
 
-[node name="Icon" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41631, 0)
-visible = false
-pixel_size = 0.003
-texture = ExtResource("3_ib41i")
-script = ExtResource("4_v17ts")
-
 [node name="StaticBody3D" parent="." instance=ExtResource("6_va835")]
 transform = Transform3D(-3.27835e-07, 0, 7.5, 0, 7.5, 0, -7.5, 0, -3.27835e-07, 13, 1.36424e-12, 6.07035)
 
@@ -113,7 +104,7 @@ transform = Transform3D(0.92796, -0.37268, 0, 0.37268, 0.92796, 0, 0, 0, 1, 31.8
 [node name="GridMap" type="GridMap" parent="."]
 
 [node name="BlocksCube019" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.983907, 0, -0.178682, 0, 1, 0, 0.178682, 0, -0.983907, 12.1723, 0.620076, 26.2662)
+transform = Transform3D(-1.5, 0, 1.31134e-07, 0, 1.5, 0, -1.31134e-07, 0, -1.5, 11.8372, 0.233206, 13.016)
 mesh = ExtResource("11_n0rln")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BlocksCube019"]

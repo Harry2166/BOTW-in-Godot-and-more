@@ -1,8 +1,9 @@
-MeshInstance3D
-Timer
-Node3D
-GridMap
 CollisionShape3D
+AnimationPlayer
+MeshInstance3D
+Node3D
+Timer
+GridMap
 RigidBody3D
 TextureRect
 Area3D
@@ -11,4 +12,3 @@ RayCast3D
 TextEdit
 Marker3D
 CharacterBody3D
-Camera3D

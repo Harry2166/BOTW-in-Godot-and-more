@@ -19,10 +19,12 @@ func _physics_process(delta):
 		is_sleeping = false
 		player.stopped_objs = 1
 	if is_sleeping and player.stop_obj:
+		set_collision_mask_value(5,true)
 		mesh.material_override = stopMaterial
 	else:
 		mesh.material_override = normalMaterial
 		is_sleeping = false
+		set_collision_mask_value(5,false)
 
 func get_stopped():
 	sleeping = true

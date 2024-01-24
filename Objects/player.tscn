@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=20 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
 [ext_resource type="Texture2D" uid="uid://laln5uwo2dok" path="res://Objects/crosshair161.png" id="2_mm8v2"]
@@ -37,6 +37,67 @@ albedo_color = Color(0, 1, 1, 1)
 material = SubResource("StandardMaterial3D_gpn34")
 inner_radius = 3.0
 outer_radius = 3.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ekpg"]
+albedo_color = Color(0, 0, 0, 0.658824)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nsvef"]
+material = SubResource("StandardMaterial3D_7ekpg")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bto0j"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Animation" id="Animation_8fl0c"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.258927, 0.215114, -0.24298), Vector3(-0.258927, 0.215114, -0.826182), Vector3(-0.259, 0.215, -0.605)]
+}
+
+[sub_resource type="Animation" id="Animation_hmkw7"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.258927, 0.215114, -0.60466), Vector3(-0.258927, 0.360051, -0.60466), Vector3(-0.259, 0.215, -0.605)]
+}
+
+[sub_resource type="Animation" id="Animation_jpq11"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.258927, 0.215114, -0.60466)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd8k8"]
+_data = {
+"RESET": SubResource("Animation_jpq11"),
+"attack": SubResource("Animation_8fl0c"),
+"idle": SubResource("Animation_hmkw7")
+}
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_urbq3")
@@ -98,6 +159,11 @@ shape = SubResource("SphereShape3D_30ohv")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MagneticArea"]
 mesh = SubResource("TorusMesh_qgo4w")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MagneticArea"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("TorusMesh_qgo4w")
+
 [node name="Ability" type="TextEdit" parent="."]
 offset_left = 918.0
 offset_top = 5.0
@@ -138,6 +204,26 @@ offset_top = 331.0
 offset_right = 643.0
 offset_bottom = 395.0
 texture = ExtResource("3_5lmoo")
+
+[node name="WeaponPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.669926, 1.4251, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponPivot"]
+transform = Transform3D(0.2, 0, 0, 0, 0.517638, 0.193185, 0, -1.93185, 0.0517638, -0.258927, 0.215114, -0.60466)
+mesh = SubResource("BoxMesh_nsvef")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WeaponPivot/MeshInstance3D"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponPivot/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_bto0j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../WeaponPivot/MeshInstance3D")
+libraries = {
+"": SubResource("AnimationLibrary_nd8k8")
+}
 
 [connection signal="body_entered" from="MagneticArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_exited"]

@@ -12,6 +12,7 @@ material = SubResource("StandardMaterial3D_y1gfs")
 
 [node name="Ball" type="RigidBody3D"]
 collision_layer = 3
+angular_damp = 3.5
 script = ExtResource("1_6xi4c")
 
 [node name="Timer" type="Timer" parent="."]

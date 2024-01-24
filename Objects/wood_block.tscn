@@ -10,6 +10,7 @@ material = SubResource("StandardMaterial3D_ia3qw")
 size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ugvr5"]
+size = Vector3(1, 1.01465, 1)
 
 [node name="WoodBlock" type="RigidBody3D"]
 collision_layer = 5
@@ -22,7 +23,7 @@ layers = 5
 mesh = SubResource("BoxMesh_12i55")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.0439453, 0)
 shape = SubResource("BoxShape3D_ugvr5")
 
 [node name="Timer" type="Timer" parent="."]
