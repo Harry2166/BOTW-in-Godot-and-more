@@ -33,7 +33,7 @@ func _physics_process(delta):
 			going_away = Vector3(-player.velocity.x, position.y, -player.velocity.z)
 			position = position.lerp(-player.position, 0.025)
 		mesh.material_override = magnetizedMaterial
-	elif player.is_magnet:
+	elif player.is_magnet and polarity != player.player_polarity:
 		mesh.material_override = potentialMaterial
 	elif is_sleeping and player.stop_obj:
 		mesh.material_override = stopMaterial
