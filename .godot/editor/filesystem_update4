@@ -1,7 +1,3 @@
 res://Level/level_1.tscn
-res://Objects/bomb.tscn
-res://Objects/player.tscn
-res://Objects/obstacle.tscn
-res://Scripts/bomb.gd
 res://Scripts/player.gd
-res://Objects/metallic_block.gd
+res://Objects/player.tscn

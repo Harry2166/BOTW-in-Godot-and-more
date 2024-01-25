@@ -93,7 +93,7 @@ func _process(delta):
 		#num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		currAbilityIdx += 1
-		match (currAbilityIdx % 6):
+		match (currAbilityIdx % 5):
 			0:
 				PlayerData.current_ability = PlayerData.Ability.NONE
 				is_magnet = false
@@ -151,32 +151,20 @@ func _process(delta):
 				bomb_guy = true
 				super_jump = false
 				ability_text.text = "Current Ability: Bombs"
-			5:
-				PlayerData.current_ability = PlayerData.Ability.BOMB
-				is_magnet = false
-				use_wood = false
-				magnet_collision.disabled = true
-				crosshair.visible = false
-				extra_crosshair.visible = false
-				stop_obj = false
-				magnet_collision_shape1.visible = false
-				bomb_guy = true
-				super_jump = true
-				ability_text.text = "Current Ability: Super Jump"
 				
 	if Input.is_action_just_pressed("A"):
 		if is_magnet:
 			player_polarity = !player_polarity
 			polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
-		elif bomb_guy and bomb_objs == 1 and super_jump:
-			super_jump_time()
-		elif bomb_guy and bomb_objs == 1:
-			spawn_bomb()
+		#elif bomb_guy and bomb_objs == 1 and super_jump:
+			#super_jump_time()
+		#elif bomb_guy and bomb_objs == 1:
+			#spawn_bomb()
 			
-	if Input.is_action_just_pressed("zr-shoulder") and bomb_guy and bomb_objs == 0:
-		bomb_objs = 1
-		strength = min(max_strength, strength + delta * strength_speed)
-		release_object()
+	#if Input.is_action_just_pressed("zr-shoulder") and bomb_guy and bomb_objs == 0:
+		#bomb_objs = 1
+		#strength = min(max_strength, strength + delta * strength_speed)
+		#release_object()
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
@@ -295,21 +283,21 @@ func _on_animation_player_animation_finished(anim_name):
 		$WeaponPivot.visible = false
 		
 		
-func spawn_bomb():
-	bomb_instance = bomb.instantiate()
-	bomb_instance.set_position(bomb_location.position)
-	bomb_spawned = true
-	bomb_objs -= 1
-	add_child(bomb_instance)
-	
-func super_jump_time():
-	bomb_instance = bomb.instantiate()
-	bomb_instance.set_position(super_jump_bomb_location.position)
-	bomb_spawned = true
-	bomb_objs -= 1
-	add_child(bomb_instance)
-	
-func release_object():
-	var dir = global_transform.basis.z.normalized() * strength + Vector3(0,5,0)
-	bomb_instance.get_thrown(dir) # is it like this????
+#func spawn_bomb():
+	#bomb_instance = bomb.instantiate()
+	#bomb_instance.set_position(bomb_location.position)
+	#bomb_spawned = true
+	#bomb_objs -= 1
+	#add_child(bomb_instance)
+	#
+#func super_jump_time():
+	#bomb_instance = bomb.instantiate()
+	#bomb_instance.set_position(super_jump_bomb_location.position)
+	#bomb_spawned = true
+	#bomb_objs -= 1
+	#add_child(bomb_instance)
+	#
+#func release_object():
+	#var dir = global_transform.basis.z.normalized() * strength + Vector3(0,5,0)
+	#bomb_instance.get_thrown(dir) # is it like this????
 	
