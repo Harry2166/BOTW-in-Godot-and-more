@@ -3,3 +3,7 @@ res://Objects/bomb.tscn
 res://Objects/player.tscn
 res://Objects/obstacle.tscn
 res://Objects/metallic_block.gd
+res://Scripts/player.gd
+res://Scripts/wood_block.gd
+res://Scripts/bomb.gd
+res://Objects/ball.tscn

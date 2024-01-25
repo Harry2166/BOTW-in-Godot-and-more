@@ -64,6 +64,7 @@ var stopped_objs = 1
 var bomb_objs = 1
 var hit_amount = 0
 var bomb_instance
+var grabbed_objs_amount = 0
 
 func _ready():
 	health_text.text = "Health: " + str(PlayerData.curr_health)
@@ -188,6 +189,7 @@ func _physics_process(delta):
 		if use_wood and aim_ray.get_collider().has_method("get_used"):
 			extra_crosshair.visible = true
 			aim_ray.get_collider().get_used()
+			grabbed_objs_amount += 1
 		if stop_obj and aim_ray.get_collider().has_method("get_stopped"):
 			extra_crosshair.visible = true
 			if Input.is_action_pressed("A") and stopped_objs == 1: 

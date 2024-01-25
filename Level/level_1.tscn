@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c45dd0jomwrh4"]
+[gd_scene load_steps=14 format=3 uid="uid://c45dd0jomwrh4"]
 
 [ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/metallic_block.tscn" id="1_jfyb3"]
 [ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://djwarijri3qf8" path="res://Objects/metallic_block_negative.tscn" id="8_xtmbd"]
 [ext_resource type="PackedScene" uid="uid://dblqx6war3obl" path="res://Objects/wood_block.tscn" id="9_81uec"]
 [ext_resource type="PackedScene" uid="uid://dnvskyjvhbg0n" path="res://Objects/ball.tscn" id="10_cnhcy"]
+[ext_resource type="PackedScene" uid="uid://46evn1dtadvh" path="res://Objects/bomb.tscn" id="10_u7rsm"]
 [ext_resource type="ArrayMesh" uid="uid://b0l1lr5r0llpr" path="res://lets-roll-assets/assets/models/blocks_Cube_019.res" id="11_n0rln"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fb6wy"]
@@ -111,3 +112,8 @@ mesh = ExtResource("11_n0rln")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlocksCube019/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5dgt4")
+
+[node name="Bombs" type="Node3D" parent="."]
+
+[node name="Bomb" parent="Bombs" instance=ExtResource("10_u7rsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9555, 5.4824, 1.8244)

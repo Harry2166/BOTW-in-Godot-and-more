@@ -1,3 +1,4 @@
+Node3D
 MeshInstance3D
 CollisionShape3D
 CollisionPolygon3D
@@ -5,7 +6,6 @@ RigidBody3D
 RayCast3D
 Area3D
 AnimationPlayer
-Node3D
 Timer
 GridMap
 TextureRect
