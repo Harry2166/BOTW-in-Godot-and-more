@@ -1,7 +1,9 @@
 extends RigidBody3D
 class_name Pickable
 @onready var player = $"./../Player"
+@onready var level = $"."
 @onready var player_pick_hand = $"./../Player/PickHand"
+var boom = preload("res://Objects/dva_bomb.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -20,12 +22,14 @@ func _process(delta):
 		#queue_free()
 
 	if (player.bomb_objs == 0 and Input.is_action_just_pressed("zl-shoulder") and player.bomb_guy):
-		print("boom")
-		queue_free()
+		var boom_instance = boom.instantiate()
+		add_child(boom_instance)
+		$Timer.start()
 		player.bomb_objs = 1
 		player.bomb_spawned = false
 		player_pick_hand.pickable_object = null
 		player_pick_hand.picking = false
+		
 		
 	elif (player.bomb_objs == 0 and Input.is_action_just_pressed("cancel") and player.bomb_guy):
 		print("im out")
@@ -44,3 +48,7 @@ func get_thrown(impulse):
 func get_picked_by(picker):
 	target = picker
 	freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
+
+
+func _on_timer_timeout():
+	queue_free()

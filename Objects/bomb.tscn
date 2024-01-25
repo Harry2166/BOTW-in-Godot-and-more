@@ -22,3 +22,8 @@ mesh = SubResource("SphereMesh_72eq1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
 shape = SubResource("SphereShape3D_ky5cw")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

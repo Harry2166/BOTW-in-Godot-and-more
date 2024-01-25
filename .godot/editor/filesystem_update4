@@ -8,3 +8,5 @@ res://Scripts/wood_block.gd
 res://Scripts/bomb.gd
 res://Objects/ball.tscn
 res://Scripts/PickHand.gd
+res://Objects/dva_bomb.tscn
+res://Scripts/dva_bomb.gd

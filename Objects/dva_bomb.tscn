@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0b7v2xfvs3s2"]
+
+[ext_resource type="Script" path="res://Scripts/dva_bomb.gd" id="1_88f0q"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ma0xi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dkqa"]
+albedo_color = Color(1, 0.517647, 0.258824, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bwqsx"]
+material = SubResource("StandardMaterial3D_8dkqa")
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_88f0q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.58, 0, 0, 0, 2.58, 0, 0, 0, 2.58, 0, 0, 0)
+shape = SubResource("SphereShape3D_ma0xi")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 100
+lifetime = 7.0
+speed_scale = 5.0
+explosiveness = 1.0
+randomness = 1.0
+mesh = SubResource("SphereMesh_bwqsx")
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
