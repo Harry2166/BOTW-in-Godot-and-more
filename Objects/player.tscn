@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dtgghqh5qb61x"]
+[gd_scene load_steps=22 format=3 uid="uid://dtgghqh5qb61x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_urbq3"]
 [ext_resource type="Texture2D" uid="uid://laln5uwo2dok" path="res://Objects/crosshair161.png" id="2_mm8v2"]
 [ext_resource type="Texture2D" uid="uid://ec2atpjwm3e3" path="res://crosshair162.png" id="3_5lmoo"]
+[ext_resource type="Script" path="res://Scripts/PickHand.gd" id="4_8h4pl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfuno"]
 albedo_color = Color(0.254902, 0.47451, 1, 1)
@@ -99,6 +100,9 @@ _data = {
 "attack": SubResource("Animation_8fl0c"),
 "idle": SubResource("Animation_hmkw7")
 }
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mnuen"]
+height = 1.5315
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_urbq3")
@@ -239,6 +243,13 @@ libraries = {
 "": SubResource("AnimationLibrary_nd8k8")
 }
 
+[node name="PickHand" type="Area3D" parent="."]
+script = ExtResource("4_8h4pl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.749088, -0.934204)
+shape = SubResource("CapsuleShape3D_mnuen")
+
 [connection signal="body_entered" from="MagneticArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MagneticArea" to="." method="_on_magnetic_area_body_exited"]
 [connection signal="body_shape_entered" from="MagneticArea" to="." method="_on_area_3d_body_shape_entered"]
@@ -246,3 +257,5 @@ libraries = {
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
 [connection signal="body_entered" from="WeaponPivot/MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="PickHand" to="PickHand" method="_on_body_entered"]
+[connection signal="body_exited" from="PickHand" to="PickHand" method="_on_body_exited"]

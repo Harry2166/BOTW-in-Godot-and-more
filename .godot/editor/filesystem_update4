@@ -7,3 +7,4 @@ res://Scripts/player.gd
 res://Scripts/wood_block.gd
 res://Scripts/bomb.gd
 res://Objects/ball.tscn
+res://Scripts/PickHand.gd
