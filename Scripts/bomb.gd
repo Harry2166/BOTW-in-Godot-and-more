@@ -33,11 +33,9 @@ func _physics_process(delta):
 	pass
 
 func get_thrown(impulse):
-	pass
-	#player.bomb_objs = 0
-	#player.bomb_spawned = false
-	#var position_to_be_placed = Vector3(player.global_position.x + 2, player.bomb_location.global_position.y + 2, player.global_position.z + 2)
-	#self.global_position = position_to_be_placed
+	target = null
+	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	apply_central_impulse(impulse)
 	
 func get_picked_by(picker):
 	target = picker
