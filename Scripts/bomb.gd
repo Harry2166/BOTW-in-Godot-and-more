@@ -32,7 +32,6 @@ func _process(delta):
 		player_pick_hand.pickable_object = null
 		player_pick_hand.picking = false
 		
-		
 	elif (player.bomb_objs == 0 and Input.is_action_just_pressed("cancel") and player.bomb_guy):
 		print("im out")
 		queue_free()
@@ -41,7 +40,6 @@ func _process(delta):
 		player_pick_hand.pickable_object = null
 		player_pick_hand.picking = false
 		
-
 func get_thrown(impulse):
 	target = null
 	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC

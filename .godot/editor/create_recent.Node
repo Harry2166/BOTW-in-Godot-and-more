@@ -1,5 +1,5 @@
-CollisionShape3D
 MeshInstance3D
+CollisionShape3D
 Timer
 CPUParticles3D
 GPUParticles3D
