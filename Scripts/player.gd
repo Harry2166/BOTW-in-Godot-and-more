@@ -42,6 +42,7 @@ var snap_vector = Vector3.ZERO
 @onready var extra_crosshair = $CrosshairExtra
 @onready var wood_location = $SpringArm3D/Camera3D/WhereWoodGoes
 @onready var bomb_location = $WhereBombSpawns
+@onready var bomb_location_in_front = $WhereBombSpawnForReal
 @onready var weapon = $WeaponPivot/MeshInstance3D
 @onready var anim_player = $AnimationPlayer
 @onready var weapon_hitbox = $WeaponPivot/MeshInstance3D/Area3D/CollisionShape3D
@@ -284,7 +285,7 @@ func _on_animation_player_animation_finished(anim_name):
 		
 func spawn_bomb():
 	bomb_instance = bomb.instantiate()
-	bomb_instance.set_position(bomb_location.global_position)
+	bomb_instance.set_position(bomb_location_in_front.global_position)
 	bomb_spawned = true
 	bomb_objs -= 1
 	level.add_child(bomb_instance)
