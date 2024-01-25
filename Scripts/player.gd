@@ -42,12 +42,12 @@ var snap_vector = Vector3.ZERO
 @onready var extra_crosshair = $CrosshairExtra
 @onready var wood_location = $SpringArm3D/Camera3D/WhereWoodGoes
 @onready var bomb_location = $WhereBombSpawns
-@onready var super_jump_bomb_location = $WhereBombSpawnsSuperJump
 @onready var weapon = $WeaponPivot/MeshInstance3D
 @onready var anim_player = $AnimationPlayer
 @onready var weapon_hitbox = $WeaponPivot/MeshInstance3D/Area3D/CollisionShape3D
 @onready var weapon_hitbox_ray = $WeaponPivot/MeshInstance3D/Area3D/Weapon_Collision
 @onready var level = $".."
+@onready var pick_hand = $PickHand
 var bomb = preload("res://Objects/bomb.tscn")
 
 var collision_point = Vector3()
@@ -156,8 +156,8 @@ func _process(delta):
 			polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
 		#elif bomb_guy and bomb_objs == 1 and super_jump:
 			#super_jump_time()
-		#elif bomb_guy and bomb_objs == 1:
-			#spawn_bomb()
+		elif bomb_guy and bomb_objs == 1:
+			spawn_bomb()
 			
 	#if Input.is_action_just_pressed("zr-shoulder") and bomb_guy and bomb_objs == 0:
 		#bomb_objs = 1
@@ -282,21 +282,9 @@ func _on_animation_player_animation_finished(anim_name):
 		$WeaponPivot.visible = false
 		
 		
-#func spawn_bomb():
-	#bomb_instance = bomb.instantiate()
-	#bomb_instance.set_position(bomb_location.position)
-	#bomb_spawned = true
-	#bomb_objs -= 1
-	#add_child(bomb_instance)
-	#
-#func super_jump_time():
-	#bomb_instance = bomb.instantiate()
-	#bomb_instance.set_position(super_jump_bomb_location.position)
-	#bomb_spawned = true
-	#bomb_objs -= 1
-	#add_child(bomb_instance)
-	#
-#func release_object():
-	#var dir = global_transform.basis.z.normalized() * strength + Vector3(0,5,0)
-	#bomb_instance.get_thrown(dir) # is it like this????
-	
+func spawn_bomb():
+	bomb_instance = bomb.instantiate()
+	bomb_instance.set_position(bomb_location.global_position)
+	bomb_spawned = true
+	bomb_objs -= 1
+	level.add_child(bomb_instance)
