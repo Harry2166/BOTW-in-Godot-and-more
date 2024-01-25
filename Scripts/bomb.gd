@@ -26,13 +26,6 @@ func _process(delta):
 func get_thrown(impulse):
 	player.bomb_objs = 0
 	player.bomb_spawned = false
-	var position_to_be_placed = Vector3(player.global_position.x, player.global_position.y + 10, player.global_position.z)
-	#apply_central_impulse(impulse)
-	#print(self)
-	#print(player.global_position)
-	#player.remove_child(self)
-	#level.add_child(self)
-	print(position_to_be_placed)
-	set_position(position_to_be_placed)
-	print(global_position)
+	var position_to_be_placed = Vector3(player.global_position.x + 2, player.bomb_location.global_position.y + 2, player.global_position.z + 2)
+	self.global_position = position_to_be_placed
 	
