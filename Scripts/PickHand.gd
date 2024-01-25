@@ -30,8 +30,9 @@ func release_object():
 		# Get the current transform
 	var transform = get_global_transform()
 
-	var dir = Vector3(-transform.basis.z) * 2 + Vector3(0,2.5,0)
+	var dir = (Vector3(-transform.basis.z) * 2 + Vector3(0,2.5,0)) * 5
 	print(dir)
+	# Vector3 decides the direction, length decides strength
 	pickable_object.get_thrown(dir)
 	pickable_object = null
 	picking = false

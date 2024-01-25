@@ -43,7 +43,7 @@ func _process(delta):
 func get_thrown(impulse):
 	target = null
 	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
-	apply_central_impulse(impulse)
+	apply_central_impulse(impulse) 
 	
 func get_picked_by(picker):
 	target = picker

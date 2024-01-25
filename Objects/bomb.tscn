@@ -12,6 +12,7 @@ material = SubResource("StandardMaterial3D_hm3ne")
 
 [node name="Bomb" type="RigidBody3D"]
 collision_layer = 3
+gravity_scale = 1.65
 angular_damp = 3.5
 script = ExtResource("1_i0rfb")
 
