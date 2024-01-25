@@ -2,7 +2,8 @@ extends RigidBody3D
 class_name Pickable
 @onready var player = $"./../Player"
 @onready var level = $"."
-@onready var player_pick_hand = $"./../Player/PickHand"
+@onready var player_pick_hand = $"./../Player/SpringArm3D/Camera3D/PickHand"
+@onready var mesh = $MeshInstance3D
 var boom = preload("res://Objects/dva_bomb.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,6 +25,7 @@ func _process(delta):
 	if (player.bomb_objs == 0 and Input.is_action_just_pressed("zl-shoulder") and player.bomb_guy):
 		var boom_instance = boom.instantiate()
 		add_child(boom_instance)
+		mesh.visible = false
 		$Timer.start()
 		player.bomb_objs = 1
 		player.bomb_spawned = false

@@ -7,7 +7,7 @@ var strength = 0.0
 var strength_speed = 5.0
 var max_strength = 10.0
 
-@onready var bomb_location = $"../WhereBombSpawns"
+@onready var bomb_location = $"../../../WhereBombSpawns"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await("ready")

@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_8dkqa")
 script = ExtResource("1_88f0q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2.58, 0, 0, 0, 2.58, 0, 0, 0, 2.58, 0, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("SphereShape3D_ma0xi")
 
 [node name="Timer" type="Timer" parent="."]
@@ -23,7 +23,7 @@ autostart = true
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 amount = 100
 lifetime = 7.0
-speed_scale = 5.0
+speed_scale = 22.0
 explosiveness = 1.0
 randomness = 1.0
 mesh = SubResource("SphereMesh_bwqsx")

@@ -48,7 +48,7 @@ var snap_vector = Vector3.ZERO
 @onready var weapon_hitbox = $WeaponPivot/MeshInstance3D/Area3D/CollisionShape3D
 @onready var weapon_hitbox_ray = $WeaponPivot/MeshInstance3D/Area3D/Weapon_Collision
 @onready var level = $".."
-@onready var pick_hand = $PickHand
+@onready var pick_hand = $SpringArm3D/Camera3D/PickHand
 var bomb = preload("res://Objects/bomb.tscn")
 
 var collision_point = Vector3()
