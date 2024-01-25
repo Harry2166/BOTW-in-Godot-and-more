@@ -173,7 +173,8 @@ func _process(delta):
 		elif bomb_guy and bomb_objs == 1:
 			spawn_bomb()
 			
-	if Input.is_action_just_pressed("zr-shoulder") and bomb_guy:
+	if Input.is_action_just_pressed("zr-shoulder") and bomb_guy and bomb_objs == 0:
+		bomb_objs = 1
 		strength = min(max_strength, strength + delta * strength_speed)
 		release_object()
 	
@@ -310,6 +311,5 @@ func super_jump_time():
 	
 func release_object():
 	var dir = global_transform.basis.z.normalized() * strength + Vector3(0,5,0)
-	remove_child(bomb_instance)
 	bomb_instance.get_thrown(dir) # is it like this????
 	
