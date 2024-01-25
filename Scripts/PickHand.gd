@@ -14,9 +14,16 @@ func _ready():
 	await("ready")
 	
 func _unhandled_input(event):
+	
+	if Input.is_action_just_pressed("A") and picking: # for putting it down
+		pickable_object.place_down_object()
+		picking = false
+		pickable_object = null
+	
 	if event.is_action_pressed("A") and pickable_object:
 		picking = true
 		pickable_object.get_picked_by(bomb_location)
+		
 	if Input.is_action_pressed("zr-shoulder") and pickable_object:
 		release_object()
 
@@ -31,7 +38,6 @@ func release_object():
 	var transform = get_global_transform()
 
 	var dir = (Vector3(-transform.basis.z) * 2 + Vector3(0,2.5,0)) * 5
-	print(dir)
 	# Vector3 decides the direction, length decides strength
 	pickable_object.get_thrown(dir)
 	pickable_object = null
