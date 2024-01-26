@@ -243,17 +243,17 @@ func _on_mouse_sens_updated(value):
 	mouse_sensitivity = value
 
 func _on_area_3d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	if body.has_method("go_to_magnet") and is_magnet:
+	if body.is_in_group("metal") and is_magnet:
 		body.go_to_magnet()
-	elif body.has_method("go_to_magnet") and not is_magnet:
+	elif body.is_in_group("metal") and not is_magnet:
 		body.become_magnetic = false
 
 func _on_magnetic_area_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
-	if body.has_method("go_to_magnet") and not is_magnet:
+	if body.is_in_group("metal") and not is_magnet:
 		body.become_magnetic = false
 
 func _on_magnetic_area_body_exited(body):
-	if body.has_method("go_to_magnet") and not is_magnet:
+	if body.is_in_group("metal") and not is_magnet:
 		body.become_magnetic = false
 
 func _on_hit_detection_body_entered(body):
@@ -264,7 +264,6 @@ func _on_hit_detection_body_entered(body):
 
 func _on_area_3d_body_entered(body):
 	if body.is_sleeping:
-		print("tite")
 		collision_point = weapon_hitbox_ray.get_collision_point()
 		hit_amount += 1
 

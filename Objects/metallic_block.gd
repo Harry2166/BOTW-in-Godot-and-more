@@ -21,6 +21,7 @@ func _ready():
 	potentialMaterial.albedo_color = Color(1, 0.0784314, 0.576471, 1)
 	stopMaterial.albedo_color = Color(0.721569, 0.52549, 0.0431373, 1)
 	add_to_group("stasised")
+	add_to_group("metal")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -31,10 +32,11 @@ func _physics_process(delta):
 	if become_magnetic and player.is_magnet:
 		if polarity != player.player_polarity:
 			position = position.lerp(player.position, 0.025)
+			mesh.material_override = magnetizedMaterial
 		else:
 			going_away = Vector3(-player.velocity.x, position.y, -player.velocity.z)
 			position = position.lerp(-player.position, 0.025)
-		mesh.material_override = magnetizedMaterial
+			mesh.material_override = normalMaterial
 	elif player.is_magnet and polarity != player.player_polarity:
 		mesh.material_override = potentialMaterial
 	elif is_sleeping and player.stop_obj  and stasis_component.is_sleeping:
