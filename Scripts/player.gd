@@ -155,15 +155,8 @@ func _process(delta):
 		if is_magnet:
 			player_polarity = !player_polarity
 			polarity_text.text = "Polarity: " + ("Negative" if not player_polarity else "Positive")
-		#elif bomb_guy and bomb_objs == 1 and super_jump:
-			#super_jump_time()
 		elif bomb_guy and bomb_objs == 1:
 			spawn_bomb()
-			
-	#if Input.is_action_just_pressed("zr-shoulder") and bomb_guy and bomb_objs == 0:
-		#bomb_objs = 1
-		#strength = min(max_strength, strength + delta * strength_speed)
-		#release_object()
 	
 func _physics_process(delta):
 	var input_vector = get_input_vector()
@@ -174,14 +167,11 @@ func _physics_process(delta):
 	update_snap_vector()
 	jump()
 	apply_controller_rotation()
-	#rotate_player()
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg_to_rad(-75), deg_to_rad(75))
 	move_and_slide()
 	#velocity = velocity # move_and_slide_with_snap(linear_velocity = velocity, snap = snap_vector, up_direction = Vector3.UP, stop_on_slope = true, max_slides = 4, floor_max_angle = 0.785398, infinite_inertia = false)
 	for idx in get_slide_collision_count(): # get_slide_count()
 		var collision = get_slide_collision(idx)
-		#if collision.collider.is_in_group("bodies"):
-			#collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push)
 	
 	if aim_ray.is_colliding():
 		if use_wood and aim_ray.get_collider().has_method("get_used"):
@@ -274,6 +264,7 @@ func _on_hit_detection_body_entered(body):
 
 func _on_area_3d_body_entered(body):
 	if body.is_sleeping:
+		print("tite")
 		collision_point = weapon_hitbox_ray.get_collision_point()
 		hit_amount += 1
 
@@ -281,7 +272,6 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
 		weapon_hitbox.disabled = true
 		$WeaponPivot.visible = false
-		
 		
 func spawn_bomb():
 	bomb_instance = bomb.instantiate()

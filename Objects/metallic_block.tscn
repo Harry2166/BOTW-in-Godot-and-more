@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://coqidqpwu33br"]
+[gd_scene load_steps=6 format=3 uid="uid://coqidqpwu33br"]
 
 [ext_resource type="Script" path="res://Objects/metallic_block.gd" id="1_sxvjv"]
+[ext_resource type="PackedScene" path="res://Objects/stasis_component.tscn" id="2_tfs2k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svfv2"]
 size = Vector3(2, 2, 2)
@@ -27,4 +28,6 @@ process_callback = 0
 wait_time = 5.0
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="StasisComponent" parent="." instance=ExtResource("2_tfs2k")]
+
+[connection signal="timeout" from="Timer" to="StasisComponent" method="_on_timer_timeout"]

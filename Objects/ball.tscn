@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnvskyjvhbg0n"]
+[gd_scene load_steps=6 format=3 uid="uid://dnvskyjvhbg0n"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_6xi4c"]
+[ext_resource type="PackedScene" path="res://Objects/stasis_component.tscn" id="2_8vfam"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hm3ne"]
 albedo_color = Color(0.708539, 0.232309, 0.936101, 1)
@@ -28,4 +29,4 @@ mesh = SubResource("SphereMesh_72eq1")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("SphereShape3D_ky5cw")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="StasisComponent" parent="." instance=ExtResource("2_8vfam")]
