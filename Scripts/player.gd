@@ -35,6 +35,7 @@ var snap_vector = Vector3.ZERO
 @onready var ability_text = $Ability
 @onready var health_text = $Health
 @onready var aim_ray = $SpringArm3D/Camera3D/RayCast3D
+@onready var cryonis_aim_ray = $SpringArm3D/Camera3D/Cryonis
 @onready var magnet_collision = $MagneticArea/MagneticCollisionShape
 @onready var magnet_collision_shape1 = $MagneticArea/MeshInstance3D
 @onready var polarity_text = $Polarity
@@ -204,14 +205,16 @@ func _physics_process(delta):
 			if Input.is_action_pressed("A") and stopped_objs == 1: 
 				aim_ray.get_collider().get_stopped()
 				stopped_objs -= 1
-		if ice_ice_tubig and aim_ray.get_collider() is StaticBody3D:
+				
+	if cryonis_aim_ray.is_colliding():
+		if ice_ice_tubig and cryonis_aim_ray.get_collider() is StaticBody3D:
 			extra_crosshair.visible = true
 			if Input.is_action_just_pressed("A") and cryo_blocks < 3:
 				cryonis_block_instance = cryonis_block.instantiate()
-				cryonis_block_instance.set_position(aim_ray.get_collision_point())
+				cryonis_block_instance.set_position(cryonis_aim_ray.get_collision_point())
 				cryo_blocks += 1
 				level.add_child(cryonis_block_instance)
-		if ice_ice_tubig and aim_ray.get_collider() is RigidBody3D:
+		if ice_ice_tubig and cryonis_aim_ray.get_collider() is RigidBody3D:
 			extra_crosshair.visible = true
 	else:
 		extra_crosshair.visible = false

@@ -113,5 +113,8 @@ mesh = ExtResource("11_n0rln")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlocksCube019/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5dgt4")
 
-[node name="Water" parent="." instance=ExtResource("6_xib80")]
+[node name="VerticalWater" parent="." instance=ExtResource("6_xib80")]
+transform = Transform3D(-4.37114e-08, -1, -2.98023e-08, 0, 2.98023e-08, -1, 1, -4.37114e-08, -1.3027e-15, 38.3308, 7.50154, -9.47945)
+
+[node name="HorizontalWater" parent="." instance=ExtResource("6_xib80")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1654, 1.25077, -16.2388)
