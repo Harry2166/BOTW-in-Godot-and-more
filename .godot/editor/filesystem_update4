@@ -1,8 +1,8 @@
 res://Level/level_1.tscn
-res://Scripts/bomb.gd
-res://Scripts/PickHand.gd
 res://Objects/bomb.tscn
+res://Objects/dva_bomb.tscn
 res://Objects/ball.tscn
 res://Objects/player.tscn
-res://Objects/obstacle.tscn
-res://Objects/dva_bomb.tscn
+res://Scripts/ball.gd
+res://Scripts/StasisComponent.gd
+res://Scripts/player.gd
