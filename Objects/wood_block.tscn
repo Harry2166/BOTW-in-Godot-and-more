@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dblqx6war3obl"]
+[gd_scene load_steps=6 format=3 uid="uid://dblqx6war3obl"]
 
 [ext_resource type="Script" path="res://Scripts/wood_block.gd" id="1_m5aak"]
+[ext_resource type="PackedScene" path="res://Objects/stasis_component.tscn" id="2_3dfqr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ia3qw"]
 albedo_color = Color(0.25098, 0.184314, 0.113725, 1)
@@ -31,6 +32,8 @@ process_callback = 0
 wait_time = 5.0
 one_shot = true
 
+[node name="StasisComponent" parent="." instance=ExtResource("2_3dfqr")]
+
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="StasisComponent" method="_on_timer_timeout"]

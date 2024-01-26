@@ -6,3 +6,9 @@ res://Objects/player.tscn
 res://Scripts/ball.gd
 res://Scripts/StasisComponent.gd
 res://Scripts/player.gd
+res://Objects/wood_block.tscn
+res://Scripts/wood_block.gd
+res://Objects/metallic_block_negative.tscn
+res://Objects/metallic_bad_box.tscn
+res://Objects/metallic_block.tscn
+res://Objects/metallic_block.gd

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp2jchjgwpyij"]
+[gd_scene load_steps=6 format=3 uid="uid://cp2jchjgwpyij"]
 
 [ext_resource type="Script" path="res://Scripts/metallic_bad_box.gd" id="1_fl4tv"]
+[ext_resource type="PackedScene" path="res://Objects/stasis_component.tscn" id="2_vwie2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ch0dl"]
 albedo_color = Color(0, 1, 0, 1)
@@ -27,6 +28,8 @@ shape = SubResource("BoxShape3D_ighbj")
 process_callback = 0
 wait_time = 5.0
 
+[node name="StasisComponent" parent="." instance=ExtResource("2_vwie2")]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="child_entered_tree" from="CollisionShape3D" to="." method="_on_collision_shape_3d_child_entered_tree"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="StasisComponent" method="_on_timer_timeout"]

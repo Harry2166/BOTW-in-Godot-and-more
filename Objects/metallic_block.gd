@@ -2,6 +2,7 @@ extends RigidBody3D
 class_name Metal
 @onready var mesh = $MeshInstance3D
 @onready var player = $"../../Player"
+@onready var stasis_component = $StasisComponent
 var direction = Vector3()
 var become_magnetic = false
 var magnetizedMaterial = StandardMaterial3D.new()
@@ -35,7 +36,7 @@ func _physics_process(delta):
 		mesh.material_override = magnetizedMaterial
 	elif player.is_magnet and polarity != player.player_polarity:
 		mesh.material_override = potentialMaterial
-	elif is_sleeping and player.stop_obj:
+	elif is_sleeping and player.stop_obj  and stasis_component.is_sleeping:
 		mesh.material_override = stopMaterial
 	else:
 		mesh.material_override = normalMaterial
@@ -54,20 +55,21 @@ func go_to_magnet():
 	become_magnetic = true
 	
 func get_stopped():
-	is_sleeping = true
-	freeze = true
-	$Timer.start()
-	
-func _on_timer_timeout():
-	is_sleeping = false
-	freeze = false
-	player.stopped_objs = 1
-	hit(player.collision_point, player.hit_amount)
-	player.hit_amount = 0
-	
-func hit(collision_point, hit_amount):
-	var direction = (global_transform.origin - collision_point).normalized()
-	var magnitude = accumulation.length() + hit_amount
-	accumulation = direction * magnitude
-	apply_central_impulse(accumulation)
-	accumulation = Vector3.ZERO
+	stasis_component.get_stopped()
+	#is_sleeping = true
+	#freeze = true
+	#$Timer.start()
+	#
+#func _on_timer_timeout():
+	#is_sleeping = false
+	#freeze = false
+	#player.stopped_objs = 1
+	#hit(player.collision_point, player.hit_amount)
+	#player.hit_amount = 0
+	#
+#func hit(collision_point, hit_amount):
+	#var direction = (global_transform.origin - collision_point).normalized()
+	#var magnitude = accumulation.length() + hit_amount
+	#accumulation = direction * magnitude
+	#apply_central_impulse(accumulation)
+	#accumulation = Vector3.ZERO

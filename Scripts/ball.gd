@@ -32,9 +32,6 @@ func _physics_process(delta):
 		freeze = false
 		set_collision_layer_value(5,false)
 		set_collision_mask_value(5,false)
-		
-func get_launched(impulse: Vector3):
-	apply_central_impulse(impulse)
 
 func get_stopped():
 	stasis_component.get_stopped()

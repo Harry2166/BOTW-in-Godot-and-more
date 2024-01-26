@@ -3,6 +3,7 @@ class_name Wood
 @onready var mesh = $MeshInstance3D
 @onready var player = $"../../Player"
 @onready var timer = $Timer
+@onready var stasis_component = $StasisComponent
 var direction = Vector3()
 var become_usable = false
 var grabbedMaterial = StandardMaterial3D.new()
@@ -41,7 +42,7 @@ func _physics_process(delta):
 		position = position.lerp(go_to_this_point, 0.025)
 	elif player.use_wood:
 		mesh.material_override = potentialMaterial
-	elif is_sleeping and player.stop_obj:
+	elif is_sleeping and player.stop_obj and stasis_component.is_sleeping:
 		set_collision_mask_value(5,true)
 		set_collision_layer_value(5,true)
 		mesh.material_override = stopMaterial
@@ -66,20 +67,21 @@ func _on_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
 	become_usable = false
 
 func get_stopped():
-	is_sleeping = true
-	freeze = true
-	timer.start()
-	
-func _on_timer_timeout():
-	is_sleeping = false
-	freeze = false
-	player.stopped_objs = 1
-	hit(player.collision_point, player.hit_amount)
-	player.hit_amount = 0
-	
-func hit(collision_point, hit_amount):
-	var direction = (global_transform.origin - collision_point).normalized()
-	var magnitude = accumulation.length() + hit_amount
-	accumulation = direction * magnitude
-	apply_central_impulse(accumulation)
-	accumulation = Vector3.ZERO
+	stasis_component.get_stopped()
+	#is_sleeping = true
+	#freeze = true
+	#timer.start()
+	#
+#func _on_timer_timeout():
+	#is_sleeping = false
+	#freeze = false
+	#player.stopped_objs = 1
+	#hit(player.collision_point, player.hit_amount)
+	#player.hit_amount = 0
+	#
+#func hit(collision_point, hit_amount):
+	#var direction = (global_transform.origin - collision_point).normalized()
+	#var magnitude = accumulation.length() + hit_amount
+	#accumulation = direction * magnitude
+	#apply_central_impulse(accumulation)
+	#accumulation = Vector3.ZERO
