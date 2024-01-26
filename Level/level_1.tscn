@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c45dd0jomwrh4"]
+[gd_scene load_steps=14 format=3 uid="uid://c45dd0jomwrh4"]
 
 [ext_resource type="PackedScene" uid="uid://coqidqpwu33br" path="res://Objects/metallic_block.tscn" id="1_jfyb3"]
 [ext_resource type="PackedScene" uid="uid://dtgghqh5qb61x" path="res://Objects/player.tscn" id="1_xkokw"]
 [ext_resource type="PackedScene" uid="uid://bi7uoh0gpo8vp" path="res://Objects/rupee.tscn" id="3_vdn16"]
 [ext_resource type="PackedScene" uid="uid://c7po804bwx01b" path="res://Objects/obstacle.tscn" id="6_va835"]
+[ext_resource type="PackedScene" uid="uid://bhr3ydswvsxet" path="res://Objects/water.tscn" id="6_xib80"]
 [ext_resource type="PackedScene" uid="uid://cp2jchjgwpyij" path="res://Objects/metallic_bad_box.tscn" id="7_gajds"]
 [ext_resource type="PackedScene" uid="uid://djwarijri3qf8" path="res://Objects/metallic_block_negative.tscn" id="8_xtmbd"]
 [ext_resource type="PackedScene" uid="uid://dblqx6war3obl" path="res://Objects/wood_block.tscn" id="9_81uec"]
@@ -111,3 +112,6 @@ mesh = ExtResource("11_n0rln")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlocksCube019/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5dgt4")
+
+[node name="Water" parent="." instance=ExtResource("6_xib80")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1654, 1.25077, -16.2388)

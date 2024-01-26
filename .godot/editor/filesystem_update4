@@ -1,1 +1,5 @@
 res://Level/level_1.tscn
+res://Objects/water.tscn
+res://Scripts/player_data.gd
+res://Scripts/player.gd
+res://Objects/player.tscn

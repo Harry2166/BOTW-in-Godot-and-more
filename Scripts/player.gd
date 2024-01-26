@@ -58,6 +58,7 @@ var stop_obj = false
 var bomb_guy = false
 var bomb_spawned = false
 var super_jump = false
+var ice_ice_tubig = false
 var stopped_objs = 1
 var bomb_objs = 1
 var hit_amount = 0
@@ -92,7 +93,7 @@ func _process(delta):
 		#num_of_jumps = 2
 	if Input.is_action_just_pressed("left_shoulder"):
 		currAbilityIdx += 1
-		match (currAbilityIdx % 5):
+		match (currAbilityIdx % 6):
 			0:
 				PlayerData.current_ability = PlayerData.Ability.NONE
 				is_magnet = false
@@ -103,6 +104,7 @@ func _process(delta):
 				magnet_collision_shape1.visible = false
 				bomb_guy = false
 				super_jump = false
+				ice_ice_tubig = false
 				ability_text.text = "Current Ability: None"
 			1:
 				PlayerData.current_ability = PlayerData.Ability.MAGNET
@@ -114,6 +116,7 @@ func _process(delta):
 				magnet_collision_shape1.visible = true
 				bomb_guy = false
 				super_jump = false
+				ice_ice_tubig = false
 				ability_text.text = "Current Ability: Magnet"
 			2:
 				PlayerData.current_ability = PlayerData.Ability.WOOD
@@ -125,6 +128,7 @@ func _process(delta):
 				magnet_collision_shape1.visible = false
 				bomb_guy = false
 				super_jump = false
+				ice_ice_tubig = false
 				ability_text.text = "Current Ability: Wood"
 			3:
 				PlayerData.current_ability = PlayerData.Ability.STASIS
@@ -137,6 +141,7 @@ func _process(delta):
 				magnet_collision_shape1.visible = false
 				bomb_guy = false
 				super_jump = false
+				ice_ice_tubig = false				
 				ability_text.text = "Current Ability: Stasis"
 			4:
 				PlayerData.current_ability = PlayerData.Ability.BOMB
@@ -149,7 +154,20 @@ func _process(delta):
 				magnet_collision_shape1.visible = false
 				bomb_guy = true
 				super_jump = false
+				ice_ice_tubig = false
 				ability_text.text = "Current Ability: Bombs"
+			5:
+				PlayerData.current_ability = PlayerData.Ability.NONE
+				is_magnet = false
+				use_wood = false
+				magnet_collision.disabled = true
+				crosshair.visible = true
+				stop_obj = false
+				magnet_collision_shape1.visible = false
+				bomb_guy = false
+				super_jump = false
+				ice_ice_tubig = true
+				ability_text.text = "Current Ability: Cryonis"
 				
 	if Input.is_action_just_pressed("A"):
 		if is_magnet:
@@ -183,6 +201,9 @@ func _physics_process(delta):
 			if Input.is_action_pressed("A") and stopped_objs == 1: 
 				aim_ray.get_collider().get_stopped()
 				stopped_objs -= 1
+		if ice_ice_tubig and aim_ray.get_collider() is StaticBody3D:
+			extra_crosshair.visible = true
+			print(aim_ray.get_collision_point())
 	else:
 		extra_crosshair.visible = false
 	
