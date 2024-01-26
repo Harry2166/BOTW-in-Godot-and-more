@@ -66,6 +66,7 @@ var hit_amount = 0
 var bomb_instance
 var cryonis_block_instance
 var grabbed_objs_amount = 0
+var cryo_blocks = 0
 
 func _ready():
 	health_text.text = "Health: " + str(PlayerData.curr_health)
@@ -205,11 +206,13 @@ func _physics_process(delta):
 				stopped_objs -= 1
 		if ice_ice_tubig and aim_ray.get_collider() is StaticBody3D:
 			extra_crosshair.visible = true
-			if Input.is_action_just_pressed("A"):
-				print("tite")
+			if Input.is_action_just_pressed("A") and cryo_blocks < 3:
 				cryonis_block_instance = cryonis_block.instantiate()
 				cryonis_block_instance.set_position(aim_ray.get_collision_point())
+				cryo_blocks += 1
 				level.add_child(cryonis_block_instance)
+		if ice_ice_tubig and aim_ray.get_collider() is RigidBody3D:
+			extra_crosshair.visible = true
 	else:
 		extra_crosshair.visible = false
 	
