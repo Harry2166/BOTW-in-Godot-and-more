@@ -56,20 +56,3 @@ func go_to_magnet():
 	
 func get_stopped():
 	stasis_component.get_stopped()
-	#is_sleeping = true
-	#freeze = true
-	#$Timer.start()
-	#
-#func _on_timer_timeout():
-	#is_sleeping = false
-	#freeze = false
-	#player.stopped_objs = 1
-	#hit(player.collision_point, player.hit_amount)
-	#player.hit_amount = 0
-	#
-#func hit(collision_point, hit_amount):
-	#var direction = (global_transform.origin - collision_point).normalized()
-	#var magnitude = accumulation.length() + hit_amount
-	#accumulation = direction * magnitude
-	#apply_central_impulse(accumulation)
-	#accumulation = Vector3.ZERO
