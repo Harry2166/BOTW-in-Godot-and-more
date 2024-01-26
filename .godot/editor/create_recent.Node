@@ -1,6 +1,7 @@
-AnimationPlayer
 CollisionShape3D
 MeshInstance3D
+RigidBody3D
+AnimationPlayer
 StaticBody3D
 Node3D
 Timer
@@ -8,7 +9,6 @@ CPUParticles3D
 GPUParticles3D
 Area3D
 CollisionPolygon3D
-RigidBody3D
 RayCast3D
 GridMap
 TextureRect

@@ -50,6 +50,7 @@ var snap_vector = Vector3.ZERO
 @onready var level = $".."
 @onready var pick_hand = $SpringArm3D/Camera3D/PickHand
 var bomb = preload("res://Objects/bomb.tscn")
+var cryonis_block = preload("res://Objects/ice.tscn")
 
 var collision_point = Vector3()
 var is_magnet = false
@@ -63,6 +64,7 @@ var stopped_objs = 1
 var bomb_objs = 1
 var hit_amount = 0
 var bomb_instance
+var cryonis_block_instance
 var grabbed_objs_amount = 0
 
 func _ready():
@@ -203,7 +205,11 @@ func _physics_process(delta):
 				stopped_objs -= 1
 		if ice_ice_tubig and aim_ray.get_collider() is StaticBody3D:
 			extra_crosshair.visible = true
-			print(aim_ray.get_collision_point())
+			if Input.is_action_just_pressed("A"):
+				print("tite")
+				cryonis_block_instance = cryonis_block.instantiate()
+				cryonis_block_instance.set_position(aim_ray.get_collision_point())
+				level.add_child(cryonis_block_instance)
 	else:
 		extra_crosshair.visible = false
 	
