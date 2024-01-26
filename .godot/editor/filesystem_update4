@@ -1,9 +1,1 @@
 res://Level/level_1.tscn
-res://Scripts/wood_block.gd
-res://Scripts/player.gd
-res://Scripts/metallic_bad_box.gd
-res://Objects/metallic_block.gd
-res://Scripts/metallic_block_negative.gd
-res://Scripts/ball.gd
-res://Scripts/StasisComponent.gd
-res://Objects/ball.tscn
