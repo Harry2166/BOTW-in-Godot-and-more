@@ -8,8 +8,5 @@ func _ready():
 	stopMaterial.albedo_color = Color(0.721569, 0.52549, 0.0431373, 1)
 	add_to_group("stasised")
 
-func go_to_magnet():
-	become_magnetic = true
-
 func hurt_player():
 	print("ouch")
