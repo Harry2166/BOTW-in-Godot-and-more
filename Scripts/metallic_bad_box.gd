@@ -6,6 +6,7 @@ func _ready():
 	normalMaterial.albedo_color = Color(0, 1, 0, 1)
 	potentialMaterial.albedo_color = Color(1, 0.0784314, 0.576471, 1)
 	stopMaterial.albedo_color = Color(0.721569, 0.52549, 0.0431373, 1)
+	add_to_group("stasised")
 
 func go_to_magnet():
 	become_magnetic = true

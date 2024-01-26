@@ -14,6 +14,7 @@ var normalMaterial = StandardMaterial3D.new()
 func _ready():
 	stopMaterial.albedo_color = Color(0.721569, 0.52549, 0.0431373, 1)
 	normalMaterial.albedo_color = Color(1, 0.027, 1)
+	add_to_group("stasised")
 
 func _physics_process(delta):
 	if (stasis_component.is_sleeping and Input.is_action_just_pressed("cancel")) or not player.stop_obj:

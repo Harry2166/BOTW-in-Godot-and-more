@@ -174,11 +174,11 @@ func _physics_process(delta):
 		var collision = get_slide_collision(idx)
 	
 	if aim_ray.is_colliding():
-		if use_wood and aim_ray.get_collider().has_method("get_used"):
+		if use_wood and aim_ray.get_collider().is_in_group("wood"):
 			extra_crosshair.visible = true
 			aim_ray.get_collider().get_used()
 			grabbed_objs_amount += 1
-		if stop_obj and aim_ray.get_collider().has_method("get_stopped"):
+		if stop_obj and aim_ray.get_collider().is_in_group("stasised"):
 			extra_crosshair.visible = true
 			if Input.is_action_pressed("A") and stopped_objs == 1: 
 				aim_ray.get_collider().get_stopped()

@@ -21,6 +21,8 @@ func _ready():
 	normalMaterial.albedo_color = Color(0.251, 0.184, 0.114)
 	potentialMaterial.albedo_color = Color(1, 0.0784314, 0.576471, 1)
 	stopMaterial.albedo_color = Color(0.721569, 0.52549, 0.0431373, 1)
+	add_to_group("wood")
+	add_to_group("stasised")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
