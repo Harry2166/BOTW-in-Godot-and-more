@@ -1,7 +1,5 @@
 res://Level/level_1.tscn
 res://Objects/water.tscn
-res://Scripts/player_data.gd
-res://Scripts/player.gd
 res://Objects/player.tscn
 res://Objects/ice.tscn
-res://Scripts/ice.gd
+res://Scripts/wood_block.gd
