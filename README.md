@@ -14,7 +14,7 @@ The runes from BOTW's basic functionality have been recreated in Godot. Other ad
   5. Cryonis, which is like in BOTW, wherein you can create and destroy ice blocks on water.
 
 ## Controls
-Currently, only controllers are supported and there are no keyboard and mouse support.
+Currently, only controllers are supported and there is no support for keyboard and mouse.
 
 ## Features TBA
 1. Proper momentum tracking for stasis
